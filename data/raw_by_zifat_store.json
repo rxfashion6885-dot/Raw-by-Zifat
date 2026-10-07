@@ -1,0 +1,763 @@
+{
+  "products": [
+    {
+      "id": "prod-001",
+      "name": "RAW Signature Oversized Heavyweight Tee",
+      "slug": "raw-signature-oversized-heavyweight-tee",
+      "sku": "RBZ-OVS-001",
+      "categoryId": "cat-oversized",
+      "categoryName": "Oversized",
+      "subcategory": "Streetwear Tee",
+      "description": "The defining piece of RAW BY ZIFAT. Crafted from 260 GSM custom-knit combed cotton with drop-shoulder silhouette, pre-shrunk finish, and a resilient 1.25-inch high-ribbed neckline. Designed to maintain its boxy architecture wash after wash.",
+      "shortDescription": "260 GSM combed cotton drop-shoulder minimalist tee.",
+      "images": [
+        "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=1000&q=85"
+      ],
+      "thumbnail": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=85",
+      "price": 850,
+      "salePrice": 750,
+      "costPrice": 420,
+      "discountPercent": 12,
+      "stockQuantity": 43,
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "name": "Pitch Black",
+          "hex": "#111111"
+        },
+        {
+          "name": "Chalk White",
+          "hex": "#F5F5F0"
+        },
+        {
+          "name": "Washed Olive",
+          "hex": "#4A5340"
+        }
+      ],
+      "material": "100% Combed Compact Cotton",
+      "gsm": 260,
+      "codAvailable": true,
+      "isFeatured": true,
+      "isNewArrival": true,
+      "isBestSeller": true,
+      "isOffer": true,
+      "isPublished": true,
+      "viewsCount": 185,
+      "cartAddCount": 29,
+      "orderCount": 13,
+      "unitsSoldCount": 17,
+      "revenue": 12750,
+      "createdAt": "2026-10-07T18:23:58.215Z",
+      "updatedAt": "2026-10-07T18:23:58.215Z"
+    },
+    {
+      "id": "prod-002",
+      "name": "Modern Linen Cutaway Panjabi",
+      "slug": "modern-linen-cutaway-panjabi",
+      "sku": "RBZ-PAN-002",
+      "categoryId": "cat-panjabi",
+      "categoryName": "Panjabi",
+      "subcategory": "Festive & Contemporary",
+      "description": "Elevate your celebratory wardrobe with this minimalist monochrome Panjabi. Made with premium natural blend breathable linen, featuring a crisp structured mandarin band collar, subtle geometric stitching, and metallic snap-fasteners.",
+      "shortDescription": "Pure breathable linen contemporary Panjabi with mandarin collar.",
+      "images": [
+        "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=1000&q=85"
+      ],
+      "thumbnail": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=85",
+      "price": 2450,
+      "salePrice": 2150,
+      "costPrice": 1300,
+      "discountPercent": 12,
+      "stockQuantity": 28,
+      "sizes": [
+        "38 (M)",
+        "40 (L)",
+        "42 (XL)",
+        "44 (XXL)"
+      ],
+      "colors": [
+        {
+          "name": "Ivory Cream",
+          "hex": "#FAF7EE"
+        },
+        {
+          "name": "Charcoal Black",
+          "hex": "#1C1C1E"
+        },
+        {
+          "name": "Slate Teal",
+          "hex": "#2A4B4B"
+        }
+      ],
+      "material": "Organic European Linen Blend",
+      "gsm": 210,
+      "codAvailable": true,
+      "isFeatured": true,
+      "isNewArrival": true,
+      "isBestSeller": false,
+      "isOffer": true,
+      "isPublished": true,
+      "viewsCount": 142,
+      "cartAddCount": 18,
+      "orderCount": 6,
+      "unitsSoldCount": 7,
+      "revenue": 15050,
+      "createdAt": "2026-10-07T18:23:58.215Z",
+      "updatedAt": "2026-10-07T18:23:58.215Z"
+    },
+    {
+      "id": "prod-003",
+      "name": "Monochrome Heavy French Terry Hoodie",
+      "slug": "monochrome-heavy-french-terry-hoodie",
+      "sku": "RBZ-HOD-003",
+      "categoryId": "cat-hoodies",
+      "categoryName": "Hoodies & Sweatshirts",
+      "subcategory": "Streetwear Outerwear",
+      "description": "Engineered for the cooler evenings and studio comfort. 380 GSM loopback French Terry fleece with a double-layered hood without cheap drawstrings for an uncompromising, sculptural minimal profile. Deep kangaroo pouch and wide ribbing.",
+      "shortDescription": "380 GSM ultra-heavy French Terry hoodie with seamless double hood.",
+      "images": [
+        "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1000&q=85"
+      ],
+      "thumbnail": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=85",
+      "price": 1850,
+      "salePrice": 1650,
+      "costPrice": 950,
+      "discountPercent": 11,
+      "stockQuantity": 31,
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "name": "Onyx Black",
+          "hex": "#121212"
+        },
+        {
+          "name": "Heather Gray",
+          "hex": "#8A8D8F"
+        },
+        {
+          "name": "Earth Clay",
+          "hex": "#8C6754"
+        }
+      ],
+      "material": "380 GSM Loopback French Terry Cotton",
+      "gsm": 380,
+      "codAvailable": false,
+      "isFeatured": true,
+      "isNewArrival": false,
+      "isBestSeller": true,
+      "isOffer": false,
+      "isPublished": true,
+      "viewsCount": 220,
+      "cartAddCount": 41,
+      "orderCount": 17,
+      "unitsSoldCount": 19,
+      "revenue": 31350,
+      "createdAt": "2026-10-07T18:23:58.215Z",
+      "updatedAt": "2026-10-07T18:23:58.215Z"
+    },
+    {
+      "id": "prod-004",
+      "name": "Acid Washed Wide-Leg Denim Trousers",
+      "slug": "acid-washed-wide-leg-denim-trousers",
+      "sku": "RBZ-JNS-004",
+      "categoryId": "cat-pants",
+      "categoryName": "Pants & Jeans",
+      "subcategory": "Vintage Denim",
+      "description": "Premium 14oz non-stretch ring-spun cotton denim subjected to vintage stone and enzyme washing. Designed with a high rise, generous relaxed straight cut through the thigh, and custom RAW engraved silver hardware.",
+      "shortDescription": "14oz rigid non-stretch vintage wash straight denim pants.",
+      "images": [
+        "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1000&q=85"
+      ],
+      "thumbnail": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=85",
+      "price": 1950,
+      "costPrice": 1050,
+      "stockQuantity": 19,
+      "sizes": [
+        "30",
+        "32",
+        "34",
+        "36"
+      ],
+      "colors": [
+        {
+          "name": "Vintage Acid Blue",
+          "hex": "#68849E"
+        },
+        {
+          "name": "Faded Charcoal",
+          "hex": "#3B3B3B"
+        }
+      ],
+      "material": "14oz Ring-Spun Cotton Denim",
+      "gsm": 400,
+      "codAvailable": true,
+      "isFeatured": false,
+      "isNewArrival": true,
+      "isBestSeller": true,
+      "isOffer": false,
+      "isPublished": true,
+      "viewsCount": 95,
+      "cartAddCount": 14,
+      "orderCount": 8,
+      "unitsSoldCount": 9,
+      "revenue": 17550,
+      "createdAt": "2026-10-07T18:23:58.215Z",
+      "updatedAt": "2026-10-07T18:23:58.215Z"
+    },
+    {
+      "id": "prod-005",
+      "name": "Tactical Minimalist Cargo Pant",
+      "slug": "tactical-minimalist-cargo-pant",
+      "sku": "RBZ-CRG-005",
+      "categoryId": "cat-pants",
+      "categoryName": "Pants & Jeans",
+      "subcategory": "Utility Bottoms",
+      "description": "Constructed from durable ripstop cotton with an elasticized waistband and tonal internal drawcord. Features dual sleek flush bellows pockets with concealed matte magnetic closures and adjustable ankle cuffs for versatile styling.",
+      "shortDescription": "Ripstop cotton utilitarian cargo pants with magnetic pocket closures.",
+      "images": [
+        "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1479064555552-3ef4979f8908?auto=format&fit=crop&w=1000&q=85"
+      ],
+      "thumbnail": "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=800&q=85",
+      "price": 1650,
+      "salePrice": 1450,
+      "costPrice": 820,
+      "discountPercent": 12,
+      "stockQuantity": 24,
+      "sizes": [
+        "M (30-31)",
+        "L (32-33)",
+        "XL (34-35)",
+        "XXL (36-37)"
+      ],
+      "colors": [
+        {
+          "name": "Combat Olive",
+          "hex": "#3C4332"
+        },
+        {
+          "name": "Matte Black",
+          "hex": "#111111"
+        },
+        {
+          "name": "Slate Gray",
+          "hex": "#585C61"
+        }
+      ],
+      "material": "100% Cotton Ripstop (240 GSM)",
+      "gsm": 240,
+      "codAvailable": true,
+      "isFeatured": true,
+      "isNewArrival": false,
+      "isBestSeller": false,
+      "isOffer": true,
+      "isPublished": true,
+      "viewsCount": 110,
+      "cartAddCount": 19,
+      "orderCount": 5,
+      "unitsSoldCount": 5,
+      "revenue": 7250,
+      "createdAt": "2026-10-07T18:23:58.215Z",
+      "updatedAt": "2026-10-07T18:23:58.215Z"
+    },
+    {
+      "id": "prod-006",
+      "name": "Clean Ribbed Pique Polo Shirt",
+      "slug": "clean-ribbed-pique-polo-shirt",
+      "sku": "RBZ-POL-006",
+      "categoryId": "cat-polo",
+      "categoryName": "Polo",
+      "subcategory": "Smart Casual",
+      "description": "A contemporary take on timeless sportswear. Woven from 230 GSM double-combed pique cotton with zero external logos, two understated rubberized tonal buttons, and an engineered flat-knit collar designed never to roll or curl.",
+      "shortDescription": "230 GSM double-combed pique cotton polo with anti-roll collar.",
+      "images": [
+        "https://images.unsplash.com/photo-1625910513413-568bfd0ce241?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=1000&q=85"
+      ],
+      "thumbnail": "https://images.unsplash.com/photo-1625910513413-568bfd0ce241?auto=format&fit=crop&w=800&q=85",
+      "price": 990,
+      "salePrice": 890,
+      "costPrice": 480,
+      "discountPercent": 10,
+      "stockQuantity": 36,
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "name": "Navy Midnight",
+          "hex": "#131E2B"
+        },
+        {
+          "name": "Pure White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Wine Burgundy",
+          "hex": "#4A1521"
+        }
+      ],
+      "material": "Double Combed Cotton Pique",
+      "gsm": 230,
+      "codAvailable": true,
+      "isFeatured": false,
+      "isNewArrival": true,
+      "isBestSeller": false,
+      "isOffer": false,
+      "isPublished": true,
+      "viewsCount": 88,
+      "cartAddCount": 12,
+      "orderCount": 4,
+      "unitsSoldCount": 4,
+      "revenue": 3560,
+      "createdAt": "2026-10-07T18:23:58.215Z",
+      "updatedAt": "2026-10-07T18:23:58.216Z"
+    },
+    {
+      "id": "prod-007",
+      "name": "Raw Heavyweight Zipper Bomber Jacket",
+      "slug": "raw-heavyweight-zipper-bomber-jacket",
+      "sku": "RBZ-JKT-007",
+      "categoryId": "cat-jackets",
+      "categoryName": "Jackets",
+      "subcategory": "Outerwear",
+      "description": "Statement minimalist outerwear. Water-repellent nylon twill shell lined with breathable cupro satin. Features a heavy two-way gunmetal YKK zipper, hidden storm placket, inside pocket, and dense wool-blend ribbed cuffs.",
+      "shortDescription": "Water-repellent nylon twill bomber jacket with two-way heavy YKK zipper.",
+      "images": [
+        "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=1000&q=85"
+      ],
+      "thumbnail": "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=85",
+      "price": 2650,
+      "salePrice": 2350,
+      "costPrice": 1400,
+      "discountPercent": 11,
+      "stockQuantity": 15,
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        {
+          "name": "Matte Black",
+          "hex": "#1A1A1A"
+        },
+        {
+          "name": "Deep Khaki",
+          "hex": "#474334"
+        }
+      ],
+      "material": "High-Density Nylon Twill with Satin Lining",
+      "gsm": 320,
+      "codAvailable": false,
+      "isFeatured": true,
+      "isNewArrival": false,
+      "isBestSeller": true,
+      "isOffer": true,
+      "isPublished": true,
+      "viewsCount": 165,
+      "cartAddCount": 22,
+      "orderCount": 7,
+      "unitsSoldCount": 7,
+      "revenue": 16450,
+      "createdAt": "2026-10-07T18:23:58.216Z",
+      "updatedAt": "2026-10-07T18:23:58.216Z"
+    },
+    {
+      "id": "prod-008",
+      "name": "Boxy Cuban Collar Linen Short Sleeve Shirt",
+      "slug": "boxy-cuban-collar-linen-short-sleeve-shirt",
+      "sku": "RBZ-SHT-008",
+      "categoryId": "cat-shirts",
+      "categoryName": "Shirts",
+      "subcategory": "Summer Casual",
+      "description": "Relaxed tropical sophistication. Crafted from lightweight pre-washed linen with an open camp collar, straight hem with side vents, and natural corozo nut buttons. Designed to be worn unbuttoned over a RAW tank or buttoned standalone.",
+      "shortDescription": "Pre-washed pure linen camp collar boxy summer shirt.",
+      "images": [
+        "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1000&q=85"
+      ],
+      "thumbnail": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=85",
+      "price": 1350,
+      "costPrice": 700,
+      "stockQuantity": 25,
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "name": "Sand Dune",
+          "hex": "#D2B48C"
+        },
+        {
+          "name": "Pure White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Sage Green",
+          "hex": "#879F84"
+        }
+      ],
+      "material": "100% European Flax Linen",
+      "gsm": 180,
+      "codAvailable": true,
+      "isFeatured": false,
+      "isNewArrival": true,
+      "isBestSeller": false,
+      "isOffer": false,
+      "isPublished": true,
+      "viewsCount": 76,
+      "cartAddCount": 11,
+      "orderCount": 3,
+      "unitsSoldCount": 3,
+      "revenue": 4050,
+      "createdAt": "2026-10-07T18:23:58.216Z",
+      "updatedAt": "2026-10-07T18:23:58.216Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat-oversized",
+      "name": "Oversized",
+      "slug": "oversized",
+      "description": "Relaxed fit, heavy drop-shoulder silhouettes engineered for street elegance.",
+      "image": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
+      "displayOrder": 1,
+      "isActive": true
+    },
+    {
+      "id": "cat-tshirts",
+      "name": "T-Shirts",
+      "slug": "t-shirts",
+      "description": "100% combed organic cotton essentials with tailored ribbed collars.",
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80",
+      "displayOrder": 2,
+      "isActive": true
+    },
+    {
+      "id": "cat-panjabi",
+      "name": "Panjabi",
+      "slug": "panjabi",
+      "description": "Modern artisanal linen and fine jacquard panjabi for festive and everyday grace.",
+      "image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80",
+      "displayOrder": 3,
+      "isActive": true
+    },
+    {
+      "id": "cat-hoodies",
+      "name": "Hoodies & Sweatshirts",
+      "slug": "hoodies",
+      "description": "380 GSM fleece and French Terry streetwear hoodies built to endure.",
+      "image": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
+      "displayOrder": 4,
+      "isActive": true
+    },
+    {
+      "id": "cat-shirts",
+      "name": "Shirts",
+      "slug": "shirts",
+      "description": "Boxy streetwear flannels, clean Cuban collar shirts, and relaxed button-downs.",
+      "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80",
+      "displayOrder": 5,
+      "isActive": true
+    },
+    {
+      "id": "cat-pants",
+      "name": "Pants & Jeans",
+      "slug": "pants",
+      "description": "Straight-leg vintage denim, tactical cargos, and relaxed pleated trousers.",
+      "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80",
+      "displayOrder": 6,
+      "isActive": true
+    },
+    {
+      "id": "cat-polo",
+      "name": "Polo",
+      "slug": "polo",
+      "description": "Heavyweight pique cotton polos with minimal contrast tipping.",
+      "image": "https://images.unsplash.com/photo-1625910513413-568bfd0ce241?auto=format&fit=crop&w=800&q=80",
+      "displayOrder": 7,
+      "isActive": true
+    },
+    {
+      "id": "cat-jackets",
+      "name": "Jackets",
+      "slug": "jackets",
+      "description": "Matte water-resistant bombers, denim trucker jackets, and light outerwear.",
+      "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80",
+      "displayOrder": 8,
+      "isActive": true
+    }
+  ],
+  "orders": [
+    {
+      "id": "RBZ-48738",
+      "customerName": "Sadman Sakib",
+      "phone": "01822334455",
+      "district": "Dhaka",
+      "area": "Uttara",
+      "address": "Sector 3, Road 7",
+      "items": [
+        {
+          "productId": "prod-003",
+          "productName": "Monochrome Heavy French Terry Hoodie",
+          "productSlug": "monochrome-heavy-french-terry-hoodie",
+          "image": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=85",
+          "size": "XL",
+          "color": "Onyx Black",
+          "quantity": 1,
+          "unitPrice": 1650,
+          "subtotal": 1650,
+          "costPrice": 950
+        }
+      ],
+      "subtotal": 1650,
+      "deliveryCharge": 60,
+      "discount": 0,
+      "total": 1710,
+      "paymentMethod": "bkash",
+      "paymentStatus": "verified",
+      "paymentDetails": {
+        "senderPhone": "01822334455",
+        "transactionId": "9BKASH8472",
+        "amount": 1710
+      },
+      "orderStatus": "confirmed",
+      "createdAt": "2026-10-07T18:25:53.618Z",
+      "updatedAt": "2026-10-07T18:26:01.827Z"
+    },
+    {
+      "id": "RBZ-66224",
+      "customerName": "Sayeed Sheikh",
+      "phone": "01712345678",
+      "district": "Dhaka",
+      "area": "Banani",
+      "address": "Road 11, House 42, Banani DOHS",
+      "items": [
+        {
+          "productId": "prod-001",
+          "productName": "RAW Signature Oversized Heavyweight Tee",
+          "productSlug": "raw-signature-oversized-heavyweight-tee",
+          "image": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=85",
+          "size": "L",
+          "color": "Pitch Black",
+          "quantity": 2,
+          "unitPrice": 750,
+          "subtotal": 1500,
+          "costPrice": 420
+        }
+      ],
+      "subtotal": 1500,
+      "deliveryCharge": 60,
+      "discount": 0,
+      "total": 1560,
+      "paymentMethod": "cod",
+      "paymentStatus": "cod_pending",
+      "orderStatus": "pending",
+      "createdAt": "2026-10-07T18:25:14.836Z",
+      "updatedAt": "2026-10-07T18:25:14.836Z"
+    }
+  ],
+  "heroSlides": [
+    {
+      "id": "hero-1",
+      "title": "RAW BY ZIFAT // EDITION 01",
+      "subtitle": "ENGINEERED STREETWEAR & MODERN BANGLADESHI APPAREL",
+      "buttonText": "EXPLORE COLLECTION",
+      "buttonLink": "/shop",
+      "desktopImage": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1800&q=85",
+      "mobileImage": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85",
+      "displayOrder": 1,
+      "isActive": true
+    },
+    {
+      "id": "hero-2",
+      "title": "THE 260 GSM OVERSIZED SERIES",
+      "subtitle": "UNCOMPROMISING STRUCTURE. HEAVYWEIGHT COMBED COTTON.",
+      "buttonText": "SHOP OVERSIZED",
+      "buttonLink": "/shop?category=oversized",
+      "desktopImage": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1800&q=85",
+      "mobileImage": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=85",
+      "displayOrder": 2,
+      "isActive": true
+    },
+    {
+      "id": "hero-3",
+      "title": "ARTISANAL CONTEMPORARY PANJABI",
+      "subtitle": "PURITY IN FORM. BREATHABLE LINEN SILHOUETTES.",
+      "buttonText": "VIEW PANJABI",
+      "buttonLink": "/shop?category=panjabi",
+      "desktopImage": "https://images.unsplash.com/photo-1506152983158-b4a74a01c721?auto=format&fit=crop&w=1800&q=85",
+      "mobileImage": "https://images.unsplash.com/photo-1506152983158-b4a74a01c721?auto=format&fit=crop&w=900&q=85",
+      "displayOrder": 3,
+      "isActive": true
+    }
+  ],
+  "banners": [
+    {
+      "id": "banner-top",
+      "position": "top",
+      "title": "FREE EXPRESS SHIPPING ON ORDERS OVER ৳2,500 ACROSS BANGLADESH",
+      "description": "All orders dispatched within 24 hours from Dhaka central hub.",
+      "image": "",
+      "displayOrder": 1,
+      "isActive": true
+    },
+    {
+      "id": "banner-mid",
+      "position": "mid",
+      "title": "CRAFTED WITH INTENT. WORN WITH CONFIDENCE.",
+      "description": "Every seam, fabric weight, and collar dimension is rigorously calibrated to give you timeless streetwear luxury.",
+      "buttonText": "DISCOVER OUR CRAFT",
+      "buttonLink": "/shop",
+      "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=85",
+      "displayOrder": 2,
+      "isActive": true
+    },
+    {
+      "id": "banner-offer",
+      "position": "offer",
+      "title": "SPECIAL INTRODUCTORY DROP",
+      "description": "Use coupon code RAW10 at checkout to receive 10% off your entire first order.",
+      "buttonText": "SHOP THE DROP",
+      "buttonLink": "/shop",
+      "image": "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1400&q=85",
+      "displayOrder": 3,
+      "isActive": true
+    }
+  ],
+  "coupons": [
+    {
+      "code": "RAW10",
+      "discountType": "percent",
+      "discountValue": 10,
+      "minOrderAmount": 1000,
+      "maxDiscount": 300,
+      "timesUsed": 14,
+      "isActive": true
+    },
+    {
+      "code": "EID150",
+      "discountType": "fixed",
+      "discountValue": 150,
+      "minOrderAmount": 1500,
+      "timesUsed": 8,
+      "isActive": true
+    }
+  ],
+  "settings": {
+    "siteName": "RAW BY ZIFAT",
+    "logoUrl": "",
+    "mobileLogoUrl": "",
+    "faviconUrl": "",
+    "phone": "+880 1712-345678",
+    "email": "support@rawbyzifat.com",
+    "address": "Banani 11, Dhaka 1213, Bangladesh",
+    "codMode": "product_specific",
+    "paymentSettings": {
+      "bkash": {
+        "enabled": true,
+        "number": "01812345678",
+        "accountType": "Personal",
+        "instructions": "Go to your bKash app or dial *247# > Send Money to this Personal Number. Enter Reference as RAW. Copy the Transaction ID (TrxID) and enter it below with your sender phone number."
+      },
+      "nagad": {
+        "enabled": true,
+        "number": "01612345678",
+        "accountType": "Personal",
+        "instructions": "Go to your Nagad app or dial *167# > Send Money to this Personal Number. Enter Reference as RAW. Copy the Transaction ID (TrxID) and enter it below with your sender phone number."
+      }
+    },
+    "deliverySettings": {
+      "insideDhakaCharge": 60,
+      "outsideDhakaCharge": 120,
+      "freeDeliveryThreshold": 2500,
+      "defaultCharge": 60
+    },
+    "developerProfile": {
+      "name": "Zifat Sheikh",
+      "title": "Founder, Creative Director & Developer",
+      "bio": "Passionate fashion visionary and software engineer building RAW BY ZIFAT to revolutionize contemporary streetwear and modern traditional fashion in Bangladesh. Crafted with pure minimal aesthetic, sustainable heavyweight fabrics, and uncompromising attention to detail.",
+      "photoUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+      "website": "https://rawbyzifat.com",
+      "facebook": "https://facebook.com/rawbyzifat",
+      "tiktok": "https://tiktok.com/@rawbyzifat",
+      "youtube": "https://youtube.com/@rawbyzifat",
+      "instagram": "https://instagram.com/rawbyzifat",
+      "whatsapp": "https://wa.me/8801812345678",
+      "telegram": "https://t.me/rawbyzifat",
+      "messenger": "https://m.me/rawbyzifat"
+    },
+    "showDeveloperProfile": false
+  },
+  "auditLogs": [
+    {
+      "id": "log-1791398226497-618",
+      "action": "ADMIN_LOGIN",
+      "details": "Admin logged in (admin@rawbyzifat.com)",
+      "adminEmail": "admin@rawbyzifat.com",
+      "timestamp": "2026-10-07T18:37:06.497Z"
+    },
+    {
+      "id": "log-1791397561827-215",
+      "action": "ORDER_STATUS_CHANGED",
+      "details": "Order RBZ-48738: status -> confirmed, payment -> verified",
+      "adminEmail": "admin@rawbyzifat.com",
+      "timestamp": "2026-10-07T18:26:01.827Z"
+    },
+    {
+      "id": "log-1791397503961-623",
+      "action": "ADMIN_LOGIN",
+      "details": "Admin logged in (admin@rawbyzifat.com)",
+      "adminEmail": "admin@rawbyzifat.com",
+      "timestamp": "2026-10-07T18:25:03.961Z"
+    },
+    {
+      "id": "log-001",
+      "action": "STORE_INITIALIZED",
+      "details": "RAW BY ZIFAT clothing database initialized with fashion collections and Bangladesh payment defaults.",
+      "adminEmail": "system",
+      "timestamp": "2026-10-07T18:23:58.224Z"
+    }
+  ],
+  "adminUsers": [
+    {
+      "id": "admin-001",
+      "username": "zifat69",
+      "email": "zifat69",
+      "passwordHash": "c22e29e4472ce15b92e2a051c485806b76de6c69d9ec645f05d6737250106d1a3d505cc2e32c016f641d94e97fcd7c0a6e033235983d077870edff2fe4d32beb",
+      "salt": "74b6d3169b8f585c35fd14ec3729dae5",
+      "role": "SUPER_ADMIN",
+      "createdAt": "2026-10-07T18:38:44.222Z"
+    }
+  ],
+  "analytics": {
+    "pageViews": 1243,
+    "productViews": 841,
+    "cartAddEvents": 142,
+    "checkoutStartedEvents": 68,
+    "ordersCompletedEvents": 53
+  }
+}
