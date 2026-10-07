@@ -14,7 +14,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -497,7 +497,7 @@ app.post('/api/admin/login', (req: Request, res: Response) => {
   res.json({
     success: true,
     token: result.token,
-    user: { username: userIdentifier, email: userIdentifier, role: 'ADMIN' },
+    user: { username: 'zifat69', email: 'zifat69', role: 'SUPER_ADMIN' },
   });
 });
 
@@ -505,7 +505,11 @@ app.post('/api/admin/login', (req: Request, res: Response) => {
 app.get('/api/admin/me', requireAdminAuth, (req: AuthenticatedRequest, res: Response) => {
   res.json({
     authenticated: true,
-    user: req.adminUser,
+    user: {
+      username: 'zifat69',
+      email: 'zifat69',
+      role: req.adminUser?.role || 'SUPER_ADMIN',
+    },
   });
 });
 

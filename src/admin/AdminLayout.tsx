@@ -112,7 +112,9 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeTab })
         <div className="pt-6 border-t border-neutral-800 space-y-3">
           <div className="text-xs">
             <span className="text-[10px] text-neutral-500 uppercase font-semibold block">Signed in as:</span>
-            <span className="font-bold text-neutral-200 truncate block">{adminUser?.email}</span>
+            <span className="font-bold text-neutral-200 truncate block">
+              {adminUser?.username || 'zifat69'} <span className="text-amber-400 font-medium text-[10px] ml-1">({adminUser?.role || 'SUPER_ADMIN'})</span>
+            </span>
           </div>
 
           <div className="flex flex-col gap-2 pt-1">

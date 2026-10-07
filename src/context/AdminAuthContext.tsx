@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { api, getAdminToken, setAdminToken, removeAdminToken } from '../services/api.js';
 
 interface AdminUser {
+  username?: string;
   email: string;
   role: string;
 }
@@ -10,7 +11,7 @@ interface AdminAuthContextType {
   isAdmin: boolean;
   adminUser: AdminUser | null;
   isLoading: boolean;
-  login: (email: string, pass: string) => Promise<boolean>;
+  login: (username: string, pass: string) => Promise<{ success: boolean; error?: string }>;
   logout: () => Promise<void>;
 }
 
@@ -46,18 +47,18 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       });
   }, []);
 
-  const login = async (username: string, pass: string): Promise<boolean> => {
+  const login = async (username: string, pass: string): Promise<{ success: boolean; error?: string }> => {
     try {
       const res = await api.adminLogin(username, pass);
       if (res.success && res.token) {
         setAdminToken(res.token);
         setIsAdmin(true);
-        setAdminUser({ email: username, role: 'ADMIN' });
-        return true;
+        setAdminUser({ username: 'zifat69', email: 'zifat69', role: 'SUPER_ADMIN' });
+        return { success: true };
       }
-      return false;
-    } catch {
-      return false;
+      return { success: false, error: 'Invalid username or password' };
+    } catch (err: any) {
+      return { success: false, error: err.message || 'Login failed' };
     }
   };
 

@@ -161,8 +161,8 @@
       "isBestSeller": true,
       "isOffer": false,
       "isPublished": true,
-      "viewsCount": 220,
-      "cartAddCount": 41,
+      "viewsCount": 222,
+      "cartAddCount": 42,
       "orderCount": 17,
       "unitsSoldCount": 19,
       "revenue": 31350,
@@ -374,7 +374,7 @@
       "isBestSeller": true,
       "isOffer": true,
       "isPublished": true,
-      "viewsCount": 165,
+      "viewsCount": 167,
       "cartAddCount": 22,
       "orderCount": 7,
       "unitsSoldCount": 7,
@@ -714,6 +714,20 @@
   },
   "auditLogs": [
     {
+      "id": "log-1791404767990-339",
+      "action": "ADMIN_LOGIN",
+      "details": "Admin logged in (zifat69)",
+      "adminEmail": "zifat69",
+      "timestamp": "2026-10-07T20:26:07.990Z"
+    },
+    {
+      "id": "log-1791398892333-309",
+      "action": "ADMIN_LOGIN",
+      "details": "Admin logged in (zifat69)",
+      "adminEmail": "zifat69",
+      "timestamp": "2026-10-07T18:48:12.333Z"
+    },
+    {
       "id": "log-1791398226497-618",
       "action": "ADMIN_LOGIN",
       "details": "Admin logged in (admin@rawbyzifat.com)",
@@ -745,18 +759,25 @@
   "adminUsers": [
     {
       "id": "admin-001",
-      "username": "zifat69",
-      "email": "zifat69",
-      "passwordHash": "c22e29e4472ce15b92e2a051c485806b76de6c69d9ec645f05d6737250106d1a3d505cc2e32c016f641d94e97fcd7c0a6e033235983d077870edff2fe4d32beb",
-      "salt": "74b6d3169b8f585c35fd14ec3729dae5",
+      "email": "admin@rawbyzifat.com",
+      "passwordHash": "5ad9c4121fdaa6abf7f37447e621de7458be0d983d555b2946cbabc926f727e86a4fbca00d488d18fa1ff3b29387122c23e8ba25157aae611446dee61723bda3",
+      "salt": "6e5057e93e3ca36abb53131028ece3c0",
       "role": "SUPER_ADMIN",
-      "createdAt": "2026-10-07T18:38:44.222Z"
+      "createdAt": "2026-10-07T18:23:58.224Z"
+    },
+    {
+      "id": "admin-zifat",
+      "email": "zifat69",
+      "passwordHash": "d3496482a620113b6a90413620d87418b332dc34b6aced6597d83b4a6d413486e7a9d9cb6b613ab8afb9c78cda2fb85617682f787df03afa85da6463f2ca707b",
+      "salt": "3d49192c06d3051063a5c3b796cde8f1",
+      "role": "SUPER_ADMIN",
+      "createdAt": "2026-10-07T20:27:47.250Z"
     }
   ],
   "analytics": {
-    "pageViews": 1243,
-    "productViews": 841,
-    "cartAddEvents": 142,
+    "pageViews": 1249,
+    "productViews": 845,
+    "cartAddEvents": 143,
     "checkoutStartedEvents": 68,
     "ordersCompletedEvents": 53
   }

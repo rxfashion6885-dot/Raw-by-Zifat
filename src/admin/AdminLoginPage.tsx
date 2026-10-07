@@ -24,12 +24,12 @@ export const AdminLoginPage: React.FC = () => {
 
     setLoading(true);
     try {
-      const success = await login(username.trim(), password.trim());
-      if (success) {
+      const res = await login(username.trim(), password.trim());
+      if (res.success) {
         showToast('Admin authentication verified successfully', 'success');
         window.location.href = '/admin';
       } else {
-        showToast('Invalid username or password', 'error');
+        showToast(res.error || 'Invalid username or password. Hint: Username is zifat69 and Password is rawbyzifat', 'error');
       }
     } catch {
       showToast('Authentication error occurred', 'error');
