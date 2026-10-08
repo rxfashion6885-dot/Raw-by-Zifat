@@ -117,9 +117,13 @@ export const AdminDashboard: React.FC = () => {
                   {stats.totalOrders}
                 </div>
                 <div className="text-xs text-neutral-500 flex items-center gap-2">
-                  <span className="text-amber-600 font-bold">{stats.pendingOrders} Pending</span>
+                  <a href="/admin/orders?view=new" className="text-amber-600 hover:text-amber-700 font-bold underline">
+                    {stats.pendingOrders} New Pending
+                  </a>
                   <span className="text-neutral-300">•</span>
-                  <span className="text-emerald-600 font-bold">{stats.completedOrders} Delivered</span>
+                  <a href="/admin/orders?view=confirmed" className="text-emerald-600 hover:text-emerald-700 font-bold underline">
+                    {stats.completedOrders} Delivered/Active
+                  </a>
                 </div>
               </div>
 

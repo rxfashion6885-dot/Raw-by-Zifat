@@ -169,15 +169,6 @@ export const Footer: React.FC = () => {
                 </button>
               </li>
               <li>
-                <a
-                  href="/admin/login"
-                  className="inline-flex items-center gap-1.5 text-neutral-900 font-bold hover:underline"
-                >
-                  <ShieldCheck className="w-3.5 h-3.5 text-amber-500" />
-                  <span>Admin Panel Portal</span>
-                </a>
-              </li>
-              <li>
                 <a href="/shop?offer=true" className="hover:text-black transition-colors">
                   Special Promotions
                 </a>
@@ -217,17 +208,27 @@ export const Footer: React.FC = () => {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
           <p>© {currentYear} RAW BY ZIFAT. All rights reserved.</p>
 
-          <div className="flex items-center gap-3">
-            {settings?.showDeveloperProfile ? (
-              <button
-                onClick={openDevProfile}
-                className="text-neutral-700 hover:text-black font-semibold hover:underline"
-              >
-                Designed & Developed by Zifat
-              </button>
-            ) : (
-              <span className="text-neutral-400 font-medium">Dhaka, Bangladesh</span>
-            )}
+          <div className="flex items-center gap-4">
+            <a
+              href="https://sayeemdev69.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-800 hover:text-black font-bold hover:underline flex items-center gap-1.5"
+            >
+              <span>Built by SYM_DEV</span>
+              <span className="text-[10px] px-1.5 py-0.5 bg-neutral-100 rounded text-neutral-600 font-mono">
+                sayeemdev69.netlify.app
+              </span>
+            </a>
+            <a
+              href="https://wa.me/8801752714034"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2.5 py-1 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-lg font-bold flex items-center gap-1 border border-emerald-200 transition-colors"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>01752714034</span>
+            </a>
           </div>
         </div>
       </div>

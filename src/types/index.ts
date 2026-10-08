@@ -30,6 +30,7 @@ export interface Product {
   material?: string;
   gsm?: number;
   codAvailable: boolean; // Product-specific Cash on Delivery
+  tiktokReviewUrl?: string; // TikTok review video or embed URL if uploaded
   isFeatured: boolean;
   isNewArrival: boolean;
   isBestSeller: boolean;
@@ -194,6 +195,7 @@ export interface Coupon {
 
 export interface SiteSettings {
   siteName: string;
+  announcementBar?: string;
   logoUrl?: string;
   mobileLogoUrl?: string;
   faviconUrl?: string;

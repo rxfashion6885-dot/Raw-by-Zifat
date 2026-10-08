@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCart } from '../context/CartContext.js';
 import { useStore } from '../context/StoreContext.js';
+import { useLanguage } from '../context/LanguageContext.js';
 import {
   X,
   Plus,
@@ -26,6 +27,7 @@ export const CartDrawer: React.FC = () => {
     closeCart,
   } = useCart();
   const { settings } = useStore();
+  const { language, t } = useLanguage();
 
   if (!isCartOpen) return null;
 
@@ -41,7 +43,7 @@ export const CartDrawer: React.FC = () => {
           <div className="flex items-center gap-2">
             <ShoppingBag className="w-5 h-5 text-neutral-900" />
             <h3 className="font-extrabold text-base tracking-tight text-neutral-900">
-              YOUR CART ({totalCount})
+              {language === 'bn' ? `আপনার কার্ট (${totalCount})` : `YOUR CART (${totalCount})`}
             </h3>
           </div>
           <button
@@ -58,9 +60,15 @@ export const CartDrawer: React.FC = () => {
             <span className="flex items-center gap-1.5">
               <Truck className="w-4 h-4 text-neutral-900" />
               {awayFromFree === 0 ? (
-                <span className="text-emerald-700 font-bold">You unlocked FREE Delivery across Bangladesh!</span>
+                <span className="text-emerald-700 font-bold">
+                  {language === 'bn' ? 'অভিনন্দন! আপনি ফ্রি ডেলিভারি পেয়েছেন!' : 'You unlocked FREE Delivery across Bangladesh!'}
+                </span>
               ) : (
-                <span>Add ৳{awayFromFree.toLocaleString()} more for FREE Delivery</span>
+                <span>
+                  {language === 'bn'
+                    ? `ফ্রি ডেলিভারির জন্য আরও ৳${awayFromFree.toLocaleString()} টাকার অর্ডার করুন`
+                    : `Add ৳${awayFromFree.toLocaleString()} more for FREE Delivery`}
+                </span>
               )}
             </span>
             <span>{freeProgress}%</span>
@@ -89,16 +97,18 @@ export const CartDrawer: React.FC = () => {
           {items.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center text-neutral-400 py-12">
               <ShoppingBag className="w-16 h-16 stroke-[1.2] mb-3 text-neutral-300" />
-              <p className="text-base font-semibold text-neutral-700">Your cart is empty</p>
+              <p className="text-base font-semibold text-neutral-700">
+                {language === 'bn' ? 'আপনার কার্ট খালি রয়েছে' : 'Your cart is empty'}
+              </p>
               <p className="text-xs text-neutral-400 mt-1 max-w-xs">
-                Explore our minimalist streetwear and contemporary clothing collections.
+                {language === 'bn' ? 'আমাদের নতুন কালেকশন ঘুরে দেখুন।' : 'Explore our minimalist streetwear and contemporary clothing collections.'}
               </p>
               <a
                 href="/shop"
                 onClick={closeCart}
                 className="mt-5 px-6 py-2.5 bg-neutral-900 text-white rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-black transition-colors"
               >
-                Start Shopping
+                {language === 'bn' ? 'শপিং শুরু করুন' : 'Start Shopping'}
               </a>
             </div>
           ) : (
@@ -205,20 +215,20 @@ export const CartDrawer: React.FC = () => {
                 onClick={clearCart}
                 className="px-3 py-3 border border-neutral-200 text-neutral-500 hover:text-neutral-900 rounded-xl text-xs font-semibold hover:bg-white transition-colors"
               >
-                Clear
+                {language === 'bn' ? 'খালি করুন' : 'Clear'}
               </button>
               <a
                 href="/checkout"
                 onClick={closeCart}
                 className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-neutral-950 hover:bg-black text-white rounded-xl font-bold text-sm tracking-wide transition-all shadow-lg active:scale-[0.98]"
               >
-                <span>PROCEED TO CHECKOUT</span>
+                <span>{language === 'bn' ? 'অর্ডার সম্পন্ন করুন' : 'PROCEED TO CHECKOUT'}</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
 
             <p className="text-[11px] text-center text-neutral-400">
-              ⚡ Guest checkout: No account or registration needed.
+              {language === 'bn' ? '⚡ গেস্ট চেকআউট: কোনো অ্যাকাউন্টের প্রয়োজন নেই' : '⚡ Guest checkout: No account or registration needed.'}
             </p>
           </div>
         )}

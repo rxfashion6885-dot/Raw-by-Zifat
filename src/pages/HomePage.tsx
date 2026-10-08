@@ -3,10 +3,12 @@ import type { Product, HeroSlide, Banner, Category } from '../types/index.js';
 import { api } from '../services/api.js';
 import { ProductCard } from '../components/ProductCard.js';
 import { useStore } from '../context/StoreContext.js';
+import { useLanguage } from '../context/LanguageContext.js';
 import {
   ChevronLeft,
   ChevronRight,
   ArrowRight,
+  ArrowUpRight,
   Sparkles,
   ShieldCheck,
   Truck,
@@ -16,6 +18,7 @@ import {
 
 export const HomePage: React.FC = () => {
   const { openSupport, openDevProfile, settings } = useStore();
+  const { language, t } = useLanguage();
   const [slides, setSlides] = useState<HeroSlide[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [banners, setBanners] = useState<Banner[]>([]);
@@ -161,17 +164,17 @@ export const HomePage: React.FC = () => {
         <div className="flex items-end justify-between mb-8">
           <div>
             <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">
-              CURATED SILHOUETTES
+              {language === 'bn' ? 'এক্সক্লুসিভ কালেকশন' : 'CURATED SILHOUETTES'}
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-950 tracking-tight mt-1">
-              Shop by Category
+              {t('home.exploreCategories')}
             </h2>
           </div>
           <a
             href="/categories"
             className="text-xs font-bold uppercase tracking-wider text-neutral-900 hover:underline flex items-center gap-1"
           >
-            <span>View All Categories</span>
+            <span>{language === 'bn' ? 'সব ক্যাটাগরি দেখুন' : 'View All Categories'}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
@@ -197,7 +200,7 @@ export const HomePage: React.FC = () => {
                 </span>
                 {cat.productCount !== undefined && (
                   <span className="text-[10px] text-neutral-400 mt-1 uppercase tracking-wider">
-                    {cat.productCount} Items
+                    {cat.productCount} {language === 'bn' ? 'আইটেম' : 'Items'}
                   </span>
                 )}
               </div>
@@ -211,17 +214,17 @@ export const HomePage: React.FC = () => {
         <div className="flex items-end justify-between mb-8">
           <div>
             <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-red-600">
-              FRESH DROPS
+              {language === 'bn' ? 'লেটেস্ট ড্রপস' : 'FRESH DROPS'}
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-950 tracking-tight mt-1">
-              New Arrivals
+              {t('home.newArrivals')}
             </h2>
           </div>
           <a
             href="/shop?newArrival=true"
             className="text-xs font-bold uppercase tracking-wider text-neutral-900 hover:underline flex items-center gap-1"
           >
-            <span>See New Drops</span>
+            <span>{language === 'bn' ? 'সব নতুন কালেকশন' : 'See New Drops'}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
@@ -275,17 +278,17 @@ export const HomePage: React.FC = () => {
         <div className="flex items-end justify-between mb-8">
           <div>
             <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">
-              POPULAR CHOICES
+              {language === 'bn' ? 'জনপ্রিয় পছন্দ' : 'POPULAR CHOICES'}
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-950 tracking-tight mt-1">
-              Best Sellers
+              {t('home.bestSellers')}
             </h2>
           </div>
           <a
             href="/shop?bestSeller=true"
             className="text-xs font-bold uppercase tracking-wider text-neutral-900 hover:underline flex items-center gap-1"
           >
-            <span>Explore All</span>
+            <span>{language === 'bn' ? 'সবগুলো দেখুন' : 'Explore All'}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
@@ -327,48 +330,72 @@ export const HomePage: React.FC = () => {
         </section>
       )}
 
-      {/* 7. DEVELOPER PROFILE SECTION (Zifat) - Controlled via settings.showDeveloperProfile */}
-      {settings?.showDeveloperProfile && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-neutral-200/60">
-          <div className="bg-white rounded-3xl border border-neutral-200/90 p-8 sm:p-12 shadow-sm flex flex-col md:flex-row items-center gap-8 justify-between">
-            <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+      {/* 7. DEVELOPER PROFILE SECTION (SYM_DEV) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-neutral-200/60">
+        <div className="bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 text-white rounded-3xl border border-neutral-800 p-8 sm:p-10 shadow-2xl flex flex-col md:flex-row items-center gap-8 justify-between relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left z-10">
+            <div className="relative shrink-0">
               <img
                 src={
-                  settings?.developerProfile.photoUrl ||
-                  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'
+                  settings?.developerProfile?.photoUrl ||
+                  'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=300&q=80'
                 }
-                alt="Zifat Sheikh"
-                className="w-24 h-24 rounded-2xl object-cover border-2 border-neutral-900 shadow-md bg-neutral-100"
+                alt="SYM_DEV"
+                className="w-24 h-24 rounded-2xl object-cover border-2 border-emerald-400 shadow-xl bg-neutral-800"
               />
-              <div className="space-y-1">
-                <div className="flex items-center justify-center sm:justify-start gap-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
-                    DEVELOPER & CREATIVE DIRECTOR
-                  </span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-neutral-900" />
-                </div>
-                <h3 className="text-xl sm:text-2xl font-black text-neutral-950">
-                  {settings?.developerProfile.name || 'Zifat Sheikh'}
-                </h3>
-                <p className="text-xs text-neutral-600 max-w-md line-clamp-2">
-                  {settings?.developerProfile.bio ||
-                    'Architecting RAW BY ZIFAT to combine minimalist street aesthetic with pure garment construction in Bangladesh.'}
-                </p>
-              </div>
+              <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-neutral-950 rounded-full animate-ping" />
+              <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-neutral-950 rounded-full" />
             </div>
 
-            <div className="flex items-center gap-3">
-              <button
-                onClick={openDevProfile}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-neutral-950 hover:bg-black text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-md"
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-center sm:justify-start gap-2">
+                <span className="text-[10px] font-black tracking-widest text-emerald-400 uppercase">
+                  LEAD WEB DEVELOPER & CREATOR
+                </span>
+                <span className="text-[9px] px-2 py-0.5 bg-neutral-800 text-neutral-300 font-mono rounded">
+                  4K CYBER ENGINE
+                </span>
+              </div>
+              <h3 className="text-2xl font-black text-white tracking-wide">
+                SYM_DEV
+              </h3>
+              <p className="text-xs text-neutral-300 max-w-lg leading-relaxed">
+                Professional Full-Stack Developer creating high-performance digital flagship solutions. Creator of RAW BY ZIFAT official store.
+              </p>
+              <a
+                href="https://sayeemdev69.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 font-bold underline underline-offset-2 pt-1"
               >
-                <UserCheck className="w-4 h-4" />
-                <span>View Developer Profile & Socials</span>
-              </button>
+                <span>Portfolio: sayeemdev69.netlify.app</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
-        </section>
-      )}
+
+          <div className="flex flex-col sm:flex-row items-center gap-3 z-10 w-full md:w-auto">
+            <a
+              href="https://wa.me/8801752714034?text=Hello%20SYM_DEV!%20I%20am%20contacting%20you%20from%20RAW%20BY%20ZIFAT%20official%20store."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-neutral-950 rounded-2xl text-xs font-black uppercase tracking-wider transition-all shadow-lg shadow-emerald-500/20 active:scale-95"
+            >
+              <span>WhatsApp (01752714034)</span>
+            </a>
+
+            <button
+              onClick={openDevProfile}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-neutral-800 hover:bg-neutral-700 text-white rounded-2xl text-xs font-bold transition-colors border border-neutral-700"
+            >
+              <UserCheck className="w-4 h-4 text-neutral-400" />
+              <span>Full Details</span>
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

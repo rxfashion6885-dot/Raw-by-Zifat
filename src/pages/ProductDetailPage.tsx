@@ -3,6 +3,7 @@ import type { Product } from '../types/index.js';
 import { api } from '../services/api.js';
 import { useCart } from '../context/CartContext.js';
 import { useStore } from '../context/StoreContext.js';
+import { useLanguage } from '../context/LanguageContext.js';
 import { ProductCard } from '../components/ProductCard.js';
 import {
   ShoppingBag,
@@ -27,6 +28,7 @@ interface ProductDetailPageProps {
 export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug }) => {
   const { addToCart } = useCart();
   const { showToast, settings } = useStore();
+  const { language, t } = useLanguage();
 
   const [product, setProduct] = useState<Product | null>(null);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
@@ -312,9 +314,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug }) =>
               {/* Size Selector */}
               <div className="pt-2">
                 <div className="flex items-center justify-between text-xs font-bold text-neutral-700 mb-2">
-                  <span className="uppercase tracking-wider">Select Size</span>
+                  <span className="uppercase tracking-wider">{language === 'bn' ? 'সাইজ বাছাই করুন' : 'Select Size'}</span>
                   <span className="text-[11px] text-neutral-400 font-normal">
-                    Stock: {product.stockQuantity} units
+                    {language === 'bn' ? `স্টক: ${product.stockQuantity} পিস` : `Stock: ${product.stockQuantity} units`}
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -337,7 +339,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug }) =>
               {/* Quantity Selector */}
               <div className="pt-2">
                 <span className="text-xs font-bold uppercase tracking-wider text-neutral-700 block mb-2">
-                  Quantity
+                  {language === 'bn' ? 'পরিমাণ (Quantity)' : 'Quantity'}
                 </span>
                 <div className="flex items-center w-36 border border-neutral-200 rounded-xl overflow-hidden bg-neutral-50">
                   <button
@@ -368,14 +370,14 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug }) =>
                   className="flex-1 flex items-center justify-center gap-2.5 py-4 px-6 border-2 border-neutral-950 hover:bg-neutral-100 text-neutral-950 rounded-2xl font-black text-xs uppercase tracking-wider transition-all disabled:opacity-40 shadow-xs active:scale-[0.98]"
                 >
                   <ShoppingBag className="w-4 h-4" />
-                  <span>ADD TO CART</span>
+                  <span>{language === 'bn' ? 'কার্টে যোগ করুন' : 'ADD TO CART'}</span>
                 </button>
                 <button
                   onClick={handleBuyNow}
                   disabled={isOutOfStock}
                   className="flex-1 flex items-center justify-center gap-2.5 py-4 px-6 bg-neutral-950 hover:bg-black text-white rounded-2xl font-black text-xs uppercase tracking-wider transition-all disabled:opacity-40 shadow-lg active:scale-[0.98]"
                 >
-                  <span>BUY NOW</span>
+                  <span>{language === 'bn' ? 'সরাসরি অর্ডার করুন' : 'BUY NOW'}</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -415,6 +417,54 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug }) =>
                 <p className="text-xs text-neutral-600 leading-relaxed font-normal">
                   {product.description}
                 </p>
+                {/* TikTok Review Video (if provided by admin) */}
+                {product.tiktokReviewUrl && (
+                  <div className="mt-4 p-4 rounded-2xl bg-neutral-950 text-white border border-neutral-800 shadow-md">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+                        <span className="text-xs font-black uppercase tracking-wider text-neutral-200">
+                          Verified TikTok Video Review
+                        </span>
+                      </div>
+                      <a
+                        href={product.tiktokReviewUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-[11px] text-amber-300 hover:text-white flex items-center gap-1 font-bold underline"
+                      >
+                        <span>Open on TikTok</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                    {product.tiktokReviewUrl.includes('tiktok.com/embed') || product.tiktokReviewUrl.includes('tiktok.com/player') ? (
+                      <div className="aspect-9/16 sm:aspect-16/9 w-full max-h-[380px] rounded-xl overflow-hidden bg-neutral-900 border border-neutral-800">
+                        <iframe
+                          src={product.tiktokReviewUrl}
+                          title="TikTok Review"
+                          allowFullScreen
+                          className="w-full h-full border-0"
+                        />
+                      </div>
+                    ) : (
+                      <div className="p-3 bg-neutral-900 rounded-xl flex items-center justify-between gap-3 text-xs">
+                        <p className="text-neutral-300 truncate">
+                          Watch community fit review & unboxing for this apparel piece on TikTok.
+                        </p>
+                        <a
+                          href={product.tiktokReviewUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="px-3 py-1.5 bg-white text-black font-bold rounded-lg shrink-0 hover:bg-neutral-200 transition-colors flex items-center gap-1.5"
+                        >
+                          <span>Watch Video</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-neutral-700">
                   <div className="p-2.5 bg-neutral-50 rounded-xl">
                     <span className="text-[10px] text-neutral-400 uppercase font-bold block">

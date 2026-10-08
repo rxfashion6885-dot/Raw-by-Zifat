@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StoreProvider } from './context/StoreContext.js';
 import { CartProvider } from './context/CartContext.js';
 import { AdminAuthProvider } from './context/AdminAuthContext.js';
+import { LanguageProvider } from './context/LanguageContext.js';
 
 import { Navbar } from './components/Navbar.js';
 import { MobileBottomNav } from './components/MobileBottomNav.js';
@@ -146,32 +147,34 @@ export function App() {
   };
 
   return (
-    <StoreProvider>
-      <CartProvider>
-        <AdminAuthProvider>
-          <div className="min-h-screen flex flex-col font-sans selection:bg-neutral-900 selection:text-white">
-            {/* Show Public Store Navbar only on public customer routes */}
-            {!isAdminRoute && <Navbar />}
+    <LanguageProvider>
+      <StoreProvider>
+        <CartProvider>
+          <AdminAuthProvider>
+            <div className="min-h-screen flex flex-col font-sans selection:bg-neutral-900 selection:text-white">
+              {/* Show Public Store Navbar only on public customer routes */}
+              {!isAdminRoute && <Navbar />}
 
-            {/* Page content */}
-            <main className="flex-1">{renderRoute()}</main>
+              {/* Page content */}
+              <main className="flex-1">{renderRoute()}</main>
 
-            {/* Public Store Overlays & Modals */}
-            {!isAdminRoute && (
-              <>
-                <Footer />
-                <MobileBottomNav />
-                <CartDrawer />
-                <CustomerSupportModal />
-                {/* Developer Profile Modal is disabled per user request until re-enabled */}
-              </>
-            )}
+              {/* Public Store Overlays & Modals */}
+              {!isAdminRoute && (
+                <>
+                  <Footer />
+                  <MobileBottomNav />
+                  <CartDrawer />
+                  <CustomerSupportModal />
+                  {/* Developer Profile Modal is disabled per user request until re-enabled */}
+                </>
+              )}
 
-            <ToastContainer />
-          </div>
-        </AdminAuthProvider>
-      </CartProvider>
-    </StoreProvider>
+              <ToastContainer />
+            </div>
+          </AdminAuthProvider>
+        </CartProvider>
+      </StoreProvider>
+    </LanguageProvider>
   );
 }
 

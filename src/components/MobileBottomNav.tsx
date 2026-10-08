@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCart } from '../context/CartContext.js';
 import { useStore } from '../context/StoreContext.js';
+import { useLanguage } from '../context/LanguageContext.js';
 import {
   Home,
   ShoppingBag,
@@ -12,6 +13,7 @@ import {
 export const MobileBottomNav: React.FC = () => {
   const { totalCount, openCart } = useCart();
   const { openSupport } = useStore();
+  const { language } = useLanguage();
 
   const currentPath = window.location.pathname;
 
@@ -25,7 +27,7 @@ export const MobileBottomNav: React.FC = () => {
           }`}
         >
           <Home className="w-5 h-5" />
-          <span>Home</span>
+          <span>{language === 'bn' ? 'হোম' : 'Home'}</span>
         </a>
 
         <a
@@ -35,7 +37,7 @@ export const MobileBottomNav: React.FC = () => {
           }`}
         >
           <Compass className="w-5 h-5" />
-          <span>Shop</span>
+          <span>{language === 'bn' ? 'শপ' : 'Shop'}</span>
         </a>
 
         <a
@@ -45,7 +47,7 @@ export const MobileBottomNav: React.FC = () => {
           }`}
         >
           <Grid className="w-5 h-5" />
-          <span>Categories</span>
+          <span>{language === 'bn' ? 'ক্যাটাগরি' : 'Categories'}</span>
         </a>
 
         <button
@@ -60,7 +62,7 @@ export const MobileBottomNav: React.FC = () => {
               </span>
             )}
           </div>
-          <span>Cart</span>
+          <span>{language === 'bn' ? 'কার্ট' : 'Cart'}</span>
         </button>
 
         <button
@@ -68,7 +70,7 @@ export const MobileBottomNav: React.FC = () => {
           className="flex flex-col items-center gap-1 p-1.5 hover:text-black transition-colors"
         >
           <MessageSquare className="w-5 h-5" />
-          <span>Support</span>
+          <span>{language === 'bn' ? 'সাপোর্ট' : 'Support'}</span>
         </button>
       </div>
     </div>

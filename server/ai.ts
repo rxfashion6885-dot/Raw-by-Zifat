@@ -21,10 +21,16 @@ function getGenAI(): GoogleGenAI | null {
 export async function handleSupportChat(message: string, history: { role: string; text: string }[] = []) {
   const trimmed = message.trim();
 
-  // Admin access trigger check
-  if (trimmed === '/RAW BY ZIFAT') {
+  // Admin access trigger check - supports /rawbyzifat and variations
+  const lowerTrigger = trimmed.toLowerCase().replace(/\s+/g, '');
+  if (
+    lowerTrigger === '/rawbyzifat' ||
+    lowerTrigger === 'rawbyzifat' ||
+    trimmed === '/RAW BY ZIFAT' ||
+    lowerTrigger === '/raw_by_zifat'
+  ) {
     return {
-      reply: '⚡ [AUTHORIZED ACCESS TRIGGER RECOGNIZED]\n\nAuthentication gateway unlocked. Please proceed to the secure administrator verification portal to authenticate your session.',
+      reply: '⚡ [AUTHORIZED ACCESS TRIGGER RECOGNIZED]\n\nAuthentication gateway unlocked. Proceed to the administrator portal:',
       isAdminTrigger: true,
       adminLoginUrl: '/admin/login',
     };
@@ -73,14 +79,18 @@ Instructions:
   if (ai) {
     try {
       const timeoutPromise = new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error('AI timeout')), 4000)
+        setTimeout(() => reject(new Error('AI request exceeded threshold')), 25000)
       );
       const response = await Promise.race([
         ai.models.generateContent({
-          model: 'gemini-3.8-flash',
+          model: 'gemini-2.5-flash',
           contents: [
             { role: 'user', parts: [{ text: `${storeContext}\n\nCustomer question: ${message}` }] },
           ],
+          config: {
+            maxOutputTokens: 600,
+            temperature: 0.7,
+          },
         }),
         timeoutPromise,
       ]);
@@ -89,8 +99,8 @@ Instructions:
       if (replyText) {
         return { reply: replyText, isAdminTrigger: false };
       }
-    } catch (err) {
-      console.warn('Gemini API call failed or timed out, using fallback rule engine:', err);
+    } catch {
+      // Gracefully continue to rule-based fallback if Gemini is temporarily unavailable
     }
   }
 

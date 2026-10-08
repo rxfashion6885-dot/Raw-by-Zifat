@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { Product } from '../types/index.js';
 import { useCart } from '../context/CartContext.js';
 import { useStore } from '../context/StoreContext.js';
+import { useLanguage } from '../context/LanguageContext.js';
 import { ShoppingBag, Share2, Check, ArrowUpRight } from 'lucide-react';
 
 interface ProductCardProps {
@@ -11,6 +12,7 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart } = useCart();
   const { showToast } = useStore();
+  const { language, t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0] || 'M');
 
@@ -35,10 +37,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       }
 
       setCopied(true);
-      showToast(`Link copied: /product/${product.slug}`, 'success');
+      showToast(language === 'bn' ? `লিংক কপি হয়েছে: /product/${product.slug}` : `Link copied: /product/${product.slug}`, 'success');
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      showToast('Could not copy link', 'error');
+      showToast(language === 'bn' ? 'লিংক কপি করা যায়নি' : 'Could not copy link', 'error');
     }
   };
 
@@ -47,12 +49,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     e.stopPropagation();
 
     if (isOutOfStock) {
-      showToast('This product is out of stock', 'error');
+      showToast(language === 'bn' ? 'দুঃখিত, এই পণ্যটির স্টক শেষ' : 'This product is out of stock', 'error');
       return;
     }
 
     addToCart(product, selectedSize, product.colors[0]?.name || 'Standard', 1);
-    showToast(`Added ${product.name} (${selectedSize}) to Cart`, 'success');
+    showToast(
+      language === 'bn'
+        ? `${product.name} (${selectedSize}) কার্টে যোগ হয়েছে`
+        : `Added ${product.name} (${selectedSize}) to Cart`,
+      'success'
+    );
   };
 
   return (
@@ -87,11 +94,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="absolute bottom-3 left-3 z-10">
           {product.codAvailable ? (
             <span className="px-2 py-0.5 text-[10px] font-semibold bg-white/95 text-neutral-800 rounded-md backdrop-blur-xs border border-neutral-200 shadow-xs">
-              COD Available
+              {language === 'bn' ? 'ক্যাশ অন ডেলিভারি' : 'COD Available'}
             </span>
           ) : (
             <span className="px-2 py-0.5 text-[10px] font-semibold bg-amber-500/95 text-white rounded-md shadow-xs">
-              Prepayment Only
+              {language === 'bn' ? 'অগ্রিম পেমেন্ট' : 'Prepayment Only'}
             </span>
           )}
         </div>
@@ -99,7 +106,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Share Button on Top Right */}
         <button
           onClick={handleCopyLink}
-          title="Share / Copy Link"
+          title={language === 'bn' ? 'লিংক কপি করুন' : 'Share / Copy Link'}
           className="absolute top-3 right-3 p-2 rounded-full bg-white/90 hover:bg-white text-neutral-700 hover:text-neutral-950 shadow-md backdrop-blur-xs transition-transform active:scale-95 z-10"
         >
           {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
@@ -108,7 +115,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {isOutOfStock && (
           <div className="absolute inset-0 bg-white/75 backdrop-blur-[1px] flex items-center justify-center z-20">
             <span className="px-4 py-2 bg-neutral-900 text-white text-xs font-bold uppercase tracking-wider rounded-lg">
-              Sold Out
+              {language === 'bn' ? 'স্টক শেষ' : 'Sold Out'}
             </span>
           </div>
         )}

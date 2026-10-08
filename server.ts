@@ -619,6 +619,7 @@ app.post('/api/admin/products', requireAdminAuth, (req: AuthenticatedRequest, re
     material: data.material || '100% Combed Cotton',
     gsm: data.gsm ? Number(data.gsm) : undefined,
     codAvailable: data.codAvailable !== false,
+    tiktokReviewUrl: data.tiktokReviewUrl || undefined,
     isFeatured: Boolean(data.isFeatured),
     isNewArrival: Boolean(data.isNewArrival),
     isBestSeller: Boolean(data.isBestSeller),

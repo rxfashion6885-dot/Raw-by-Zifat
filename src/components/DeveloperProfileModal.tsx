@@ -13,9 +13,26 @@ import {
 export const DeveloperProfileModal: React.FC = () => {
   const { settings, isDevProfileOpen, closeDevProfile } = useStore();
 
-  if (!isDevProfileOpen || !settings || !settings.showDeveloperProfile) return null;
+  if (!isDevProfileOpen) return null;
 
-  const profile = settings.developerProfile;
+  const rawProfile = settings?.developerProfile;
+  const profile = {
+    name: rawProfile?.name && rawProfile.name !== 'Zifat Sheikh' ? rawProfile.name : 'SYM_DEV',
+    title: rawProfile?.title || 'Lead Full-Stack Developer & UI/UX Designer',
+    bio: rawProfile?.bio || 'Professional web engineer specialized in high-performance e-commerce experiences and ultra-modern web technologies. Crafted the official digital flagship store for RAW BY ZIFAT.',
+    photoUrl: rawProfile?.photoUrl || 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80',
+    website: rawProfile?.website || 'https://sayeemdev69.netlify.app',
+    whatsapp: rawProfile?.whatsapp || 'https://wa.me/8801752714034',
+    phone: '01752714034',
+    facebook: rawProfile?.facebook || 'https://facebook.com',
+    instagram: rawProfile?.instagram || '',
+    tiktok: rawProfile?.tiktok || '',
+    youtube: rawProfile?.youtube || '',
+    telegram: rawProfile?.telegram || '',
+    messenger: rawProfile?.messenger || '',
+  };
+
+  const directWhatsAppUrl = `https://wa.me/8801752714034?text=${encodeURIComponent('Hello SYM_DEV! I am contacting you from RAW BY ZIFAT official store.')}`;
 
   const socialLinks = [
     { label: 'Website', url: profile.website, icon: Globe, color: 'hover:text-blue-600' },
@@ -81,6 +98,32 @@ export const DeveloperProfileModal: React.FC = () => {
             <p className="text-sm text-neutral-700 leading-relaxed font-normal">
               {profile.bio}
             </p>
+          </div>
+
+          {/* Primary Quick Actions: WhatsApp Direct & Website */}
+          <div className="mt-5 space-y-2.5">
+            <a
+              href={directWhatsAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-2xl shadow-lg shadow-emerald-600/20 active:scale-98 transition-all text-sm group"
+            >
+              <MessageCircle className="w-5 h-5 text-white animate-pulse" />
+              <span>WhatsApp Message: 01752714034</span>
+            </a>
+
+            <a
+              href={profile.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-between py-2.5 px-4 bg-neutral-100 hover:bg-neutral-200/80 text-neutral-900 font-semibold rounded-2xl border border-neutral-200/80 transition-all text-xs"
+            >
+              <span className="flex items-center gap-2">
+                <Globe className="w-4 h-4 text-blue-600" />
+                <span>Portfolio: sayeemdev69.netlify.app</span>
+              </span>
+              <ExternalLink className="w-3.5 h-3.5 text-neutral-400" />
+            </a>
           </div>
 
           {/* Social Links Grid */}
