@@ -21,8 +21,17 @@ service cloud.firestore {
 
     // Settings
     match /settings/{settingId} {
-      allow read: if true;
-      allow write: if true;
+      allow read, write: if true;
+    }
+
+    // Coupons
+    match /coupons/{couponId} {
+      allow read, write: if true;
+    }
+
+    // Audit logs
+    match /auditLogs/{logId} {
+      allow read, write: if true;
     }
 
     // Connection test document

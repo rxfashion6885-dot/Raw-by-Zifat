@@ -70,36 +70,45 @@ export function App() {
     return () => document.removeEventListener('click', handleAnchorClick);
   }, []);
 
-  const isAdminRoute = currentPath.startsWith('/admin');
+  const isAdminRoute = currentPath.startsWith('/admin') || currentPath.startsWith('/rawbyzifat');
 
   // Route dispatcher
   const renderRoute = () => {
-    // 1. Admin Routes
-    if (currentPath === '/admin/login') {
+    // 1. Admin & Secret Direct Routes (/admin & /rawbyzifat)
+    if (
+      currentPath === '/admin/login' ||
+      currentPath === '/rawbyzifat/login'
+    ) {
       return <AdminLoginPage />;
     }
-    if (currentPath === '/admin' || currentPath === '/admin/') {
+    if (
+      currentPath === '/admin' ||
+      currentPath === '/admin/' ||
+      currentPath === '/rawbyzifat' ||
+      currentPath === '/rawbyzifat/' ||
+      currentPath === '/rawbyzifat/dashboard'
+    ) {
       return <AdminDashboard />;
     }
-    if (currentPath === '/admin/orders') {
+    if (currentPath === '/admin/orders' || currentPath === '/rawbyzifat/orders') {
       return <AdminOrders />;
     }
-    if (currentPath === '/admin/products') {
+    if (currentPath === '/admin/products' || currentPath === '/rawbyzifat/products') {
       return <AdminProducts />;
     }
-    if (currentPath === '/admin/categories') {
+    if (currentPath === '/admin/categories' || currentPath === '/rawbyzifat/categories') {
       return <AdminCategories />;
     }
-    if (currentPath === '/admin/hero-banners') {
+    if (currentPath === '/admin/hero-banners' || currentPath === '/rawbyzifat/hero-banners') {
       return <AdminHeroBanners />;
     }
-    if (currentPath === '/admin/coupons') {
+    if (currentPath === '/admin/coupons' || currentPath === '/rawbyzifat/coupons') {
       return <AdminCoupons />;
     }
-    if (currentPath === '/admin/settings') {
+    if (currentPath === '/admin/settings' || currentPath === '/rawbyzifat/settings') {
       return <AdminSettings />;
     }
-    if (currentPath === '/admin/audit-logs') {
+    if (currentPath === '/admin/audit-logs' || currentPath === '/rawbyzifat/audit-logs') {
       return <AdminAuditLogs />;
     }
 

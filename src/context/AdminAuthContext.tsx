@@ -53,7 +53,7 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       if (res.success && res.token) {
         setAdminToken(res.token);
         setIsAdmin(true);
-        setAdminUser({ username: 'zifat69', email: 'zifat69', role: 'SUPER_ADMIN' });
+        setAdminUser({ username: 'admin12', email: 'admin12', role: 'SUPER_ADMIN' });
         return { success: true };
       }
       return { success: false, error: 'Invalid username or password' };

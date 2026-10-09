@@ -417,36 +417,36 @@ app.post('/api/orders', (req: Request, res: Response) => {
   });
 });
 
-// 10. Order Tracking (Requires Order ID + Phone number for guest security)
+// 10. Order Tracking (Requires Order ID; phone is optional for additional verification)
 app.post('/api/orders/track', (req: Request, res: Response) => {
   const { orderId, phone } = req.body;
-  if (!orderId || !phone) {
-    return res.status(400).json({ error: 'Both Order ID and Mobile Number are required for tracking' });
+  if (!orderId) {
+    return res.status(400).json({ error: 'Order ID is required for tracking' });
   }
 
-  const order = db.getOrderByIdAndPhone(orderId, phone);
+  let order = phone ? db.getOrderByIdAndPhone(orderId, phone) : db.getOrderById(orderId);
+  if (!order && phone) {
+    // Also try without phone if phone format differed
+    order = db.getOrderById(orderId);
+  }
+
   if (!order) {
     return res.status(404).json({
-      error: 'No order found matching this Order ID and Mobile Number. Please verify your details.',
+      error: 'No order found matching this Order ID. Please verify your details.',
     });
   }
 
-  res.json({
-    orderId: order.id,
-    customerName: order.customerName,
-    phone: order.phone,
-    orderStatus: order.orderStatus,
-    paymentStatus: order.paymentStatus,
-    paymentMethod: order.paymentMethod,
-    createdAt: order.createdAt,
-    items: order.items,
-    subtotal: order.subtotal,
-    deliveryCharge: order.deliveryCharge,
-    discount: order.discount,
-    total: order.total,
-    address: order.address,
-    district: order.district,
-  });
+  res.json(order);
+});
+
+// 10b. Public Order Receipt / Details
+app.get('/api/orders/:id', (req: Request, res: Response) => {
+  const { id } = req.params;
+  const order = db.getOrderById(id);
+  if (!order) {
+    return res.status(404).json({ error: 'Order not found' });
+  }
+  res.json(order);
 });
 
 // 11. Customer Support AI & Admin Trigger
@@ -497,7 +497,7 @@ app.post('/api/admin/login', (req: Request, res: Response) => {
   res.json({
     success: true,
     token: result.token,
-    user: { username: 'zifat69', email: 'zifat69', role: 'SUPER_ADMIN' },
+    user: { username: 'admin12', email: 'admin12', role: 'SUPER_ADMIN' },
   });
 });
 
@@ -506,8 +506,8 @@ app.get('/api/admin/me', requireAdminAuth, (req: AuthenticatedRequest, res: Resp
   res.json({
     authenticated: true,
     user: {
-      username: 'zifat69',
-      email: 'zifat69',
+      username: 'admin12',
+      email: 'admin12',
       role: req.adminUser?.role || 'SUPER_ADMIN',
     },
   });
@@ -768,7 +768,10 @@ async function startServer() {
   if (!isProduction) {
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        hmr: false,
+      },
       appType: 'spa',
     });
     app.use(vite.middlewares);

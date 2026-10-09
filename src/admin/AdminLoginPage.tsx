@@ -11,8 +11,10 @@ export const AdminLoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
   if (isAdmin) {
-    window.location.href = '/admin';
-    return null;
+    if (window.location.pathname === '/admin/login' || window.location.pathname === '/rawbyzifat/login') {
+      window.location.href = window.location.pathname.startsWith('/rawbyzifat') ? '/rawbyzifat' : '/admin';
+      return null;
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,9 +29,11 @@ export const AdminLoginPage: React.FC = () => {
       const res = await login(username.trim(), password.trim());
       if (res.success) {
         showToast('Admin authentication verified successfully', 'success');
-        window.location.href = '/admin';
+        const target = window.location.pathname.startsWith('/rawbyzifat') ? '/rawbyzifat' : '/admin';
+        window.history.pushState({}, '', target);
+        window.dispatchEvent(new PopStateEvent('popstate'));
       } else {
-        showToast(res.error || 'Invalid username or password. Hint: Username is zifat69 and Password is rawbyzifat', 'error');
+        showToast(res.error || 'Invalid username or password. Hint: Username is admin12 and Password is zifat12', 'error');
       }
     } catch {
       showToast('Authentication error occurred', 'error');
@@ -67,7 +71,7 @@ export const AdminLoginPage: React.FC = () => {
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="zifat69"
+                placeholder="admin12"
                 autoCapitalize="none"
                 autoComplete="username"
                 className="w-full pl-10 pr-4 py-3 bg-neutral-50 border border-neutral-200 rounded-xl text-sm font-semibold focus:outline-hidden focus:ring-1 focus:ring-black"
@@ -86,7 +90,7 @@ export const AdminLoginPage: React.FC = () => {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="rawbyzifat"
+                placeholder="zifat12"
                 autoComplete="current-password"
                 className="w-full pl-10 pr-4 py-3 bg-neutral-50 border border-neutral-200 rounded-xl text-sm font-semibold focus:outline-hidden focus:ring-1 focus:ring-black"
               />
@@ -113,14 +117,14 @@ export const AdminLoginPage: React.FC = () => {
         <div className="pt-4 border-t border-neutral-100 text-center">
           <p className="text-[11px] text-neutral-400">
             Admin Credentials: <br />
-            Username: <code className="text-neutral-900 font-bold bg-neutral-100 px-1.5 py-0.5 rounded">zifat69</code> &nbsp;|&nbsp;
-            Password: <code className="text-neutral-900 font-bold bg-neutral-100 px-1.5 py-0.5 rounded">rawbyzifat</code>
+            Username: <code className="text-neutral-900 font-bold bg-neutral-100 px-1.5 py-0.5 rounded">admin12</code> &nbsp;|&nbsp;
+            Password: <code className="text-neutral-900 font-bold bg-neutral-100 px-1.5 py-0.5 rounded">zifat12</code>
           </p>
           <button
             type="button"
             onClick={() => {
-              setUsername('zifat69');
-              setPassword('rawbyzifat');
+              setUsername('admin12');
+              setPassword('zifat12');
             }}
             className="mt-2.5 inline-block text-[11px] font-bold text-neutral-800 hover:text-black bg-neutral-100 hover:bg-neutral-200 px-3 py-1 rounded-full transition-colors cursor-pointer"
           >

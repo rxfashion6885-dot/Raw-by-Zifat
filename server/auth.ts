@@ -57,41 +57,42 @@ export function loginAdmin(usernameOrEmail: string, pass: string): { success: bo
   const lowerPass = cleanPass.toLowerCase().replace(/\s+/g, '');
 
   // Support requested credentials:
-  // Username: zifat69 (also accepts zifat, zifat 69, rawbyzifat, admin)
-  // Password: rawbyzifat (also accepts zifat69, raw by zifat)
+  // Username: admin12 (also accepts admin, zifat69, rawbyzifat)
+  // Password: zifat12 (also accepts rawbyzifat)
   const isMatchUsername =
-    clean === 'zifat69' ||
-    clean === 'zifat' ||
-    clean === 'rawbyzifat' ||
+    clean === 'admin12' ||
     clean === 'admin' ||
-    rawInput === 'zifat 69' ||
+    clean === 'zifat12' ||
+    clean === 'zifat69' ||
+    clean === 'rawbyzifat' ||
+    rawInput === 'admin 12' ||
     rawInput === 'admin@rawbyzifat.com' ||
-    clean.includes('zifat69');
+    clean.includes('admin12');
 
   const isMatchPassword =
+    cleanPass === 'zifat12' ||
+    lowerPass === 'zifat12' ||
     cleanPass === 'rawbyzifat' ||
     lowerPass === 'rawbyzifat' ||
-    cleanPass === 'zifat69' ||
-    lowerPass === 'zifat69' ||
     cleanPass === 'admin123';
 
   if (isMatchUsername && isMatchPassword) {
-    const token = createAdminSession('zifat69', 'SUPER_ADMIN');
-    db.addAuditLog('ADMIN_LOGIN', `Admin logged in (${rawInput})`, 'zifat69');
+    const token = createAdminSession('admin12', 'SUPER_ADMIN');
+    db.addAuditLog('ADMIN_LOGIN', `Admin logged in (${rawInput})`, 'admin12');
     return { success: true, token };
   }
 
   const user = db.getAdminByEmail(clean) || db.getAdminByEmail(rawInput);
   if (!user) {
-    return { success: false, error: 'Invalid username or password. Use Username: zifat69 and Password: rawbyzifat' };
+    return { success: false, error: 'Invalid username or password. Use Username: admin12 and Password: zifat12' };
   }
 
   const isValid = verifyPassword(cleanPass, user.passwordHash, user.salt);
   if (!isValid) {
-    return { success: false, error: 'Invalid password. Use Password: rawbyzifat' };
+    return { success: false, error: 'Invalid password. Use Password: zifat12' };
   }
 
-  const token = createAdminSession('zifat69', user.role || 'SUPER_ADMIN');
-  db.addAuditLog('ADMIN_LOGIN', `Admin logged in (${user.email})`, 'zifat69');
+  const token = createAdminSession('admin12', user.role || 'SUPER_ADMIN');
+  db.addAuditLog('ADMIN_LOGIN', `Admin logged in (${user.email})`, 'admin12');
   return { success: true, token };
 }

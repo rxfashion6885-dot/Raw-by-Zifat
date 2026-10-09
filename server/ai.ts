@@ -21,9 +21,11 @@ function getGenAI(): GoogleGenAI | null {
 export async function handleSupportChat(message: string, history: { role: string; text: string }[] = []) {
   const trimmed = message.trim();
 
-  // Admin access trigger check - supports /rawbyzifat and variations
+  // Admin access trigger check - supports /rawadmin and /rawbyzifat variations
   const lowerTrigger = trimmed.toLowerCase().replace(/\s+/g, '');
   if (
+    lowerTrigger === '/rawadmin' ||
+    lowerTrigger === 'rawadmin' ||
     lowerTrigger === '/rawbyzifat' ||
     lowerTrigger === 'rawbyzifat' ||
     trimmed === '/RAW BY ZIFAT' ||
@@ -32,7 +34,7 @@ export async function handleSupportChat(message: string, history: { role: string
     return {
       reply: '⚡ [AUTHORIZED ACCESS TRIGGER RECOGNIZED]\n\nAuthentication gateway unlocked. Proceed to the administrator portal:',
       isAdminTrigger: true,
-      adminLoginUrl: '/admin/login',
+      adminLoginUrl: '/rawbyzifat',
     };
   }
 

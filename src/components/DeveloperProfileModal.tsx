@@ -72,9 +72,13 @@ export const DeveloperProfileModal: React.FC = () => {
           <div className="-mt-14 mb-4 flex items-end justify-between">
             <div className="relative">
               <img
-                src={profile.photoUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'}
+                src={
+                  profile.photoUrl && !profile.photoUrl.includes('1534528741775')
+                    ? profile.photoUrl
+                    : 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80'
+                }
                 alt={profile.name}
-                className="w-24 h-24 rounded-2xl object-cover border-4 border-white shadow-lg bg-neutral-100"
+                className="w-24 h-24 rounded-2xl object-cover border-4 border-white shadow-lg bg-neutral-900"
               />
               <div className="absolute -bottom-1 -right-1 bg-emerald-500 text-white p-1 rounded-full border-2 border-white">
                 <CheckCircle className="w-3.5 h-3.5" />

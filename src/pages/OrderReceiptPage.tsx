@@ -12,6 +12,9 @@ import {
   Package,
   Truck,
   Building,
+  AlertCircle,
+  Search,
+  MessageCircle,
 } from 'lucide-react';
 
 interface OrderReceiptPageProps {
@@ -23,52 +26,71 @@ export const OrderReceiptPage: React.FC<OrderReceiptPageProps> = ({ orderId }) =
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [phoneRetry, setPhoneRetry] = useState('');
+  const [retrying, setRetrying] = useState(false);
 
   useEffect(() => {
-    // For receipt view immediately after checkout or via public link,
-    // fetch order status using track endpoint or public info
-    async function fetchReceipt() {
+    async function loadReceipt() {
+      setLoading(true);
       try {
-        // Query server for order details
-        const res = await fetch(`/api/orders/track`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ orderId, phone: '' }),
-        });
-        if (res.ok) {
-          const data = await res.json();
+        // 1. Try direct getOrder from Cloud Firestore / API
+        const data = await api.getOrder(orderId);
+        if (data) {
           setOrder(data);
-        } else {
-          // If phone was required, check if we have recently placed order stored in sessionStorage
+          setLoading(false);
+          return;
+        }
+
+        // 2. Try tracking endpoint
+        const tracked = await api.trackOrder(orderId);
+        if (tracked) {
+          setOrder(tracked);
+          setLoading(false);
+          return;
+        }
+      } catch {
+        // 3. Try reading recent order in session/local storage
+        try {
           const recent = sessionStorage.getItem('last_order_receipt');
           if (recent) {
             const parsed = JSON.parse(recent);
-            if (parsed.id === orderId) {
+            if (parsed.id?.toLowerCase() === orderId.toLowerCase()) {
               setOrder(parsed);
+              setLoading(false);
+              return;
             }
           }
+          const cached = localStorage.getItem(`rbz_order_${orderId}`);
+          if (cached) {
+            setOrder(JSON.parse(cached));
+            setLoading(false);
+            return;
+          }
+        } catch {
+          // ignore
         }
-      } catch {
-        // ignore
       } finally {
         setLoading(false);
       }
     }
 
-    // Try reading cached order from window/localStorage if server requires phone
-    const cachedOrder = localStorage.getItem(`rbz_order_${orderId}`);
-    if (cachedOrder) {
-      try {
-        setOrder(JSON.parse(cachedOrder));
-        setLoading(false);
-        return;
-      } catch {
-        // ignore
-      }
-    }
-
-    fetchReceipt();
+    loadReceipt();
   }, [orderId]);
+
+  const handleManualLookup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!phoneRetry.trim()) return;
+    setRetrying(true);
+    try {
+      const data = await api.trackOrder(orderId, phoneRetry.trim());
+      setOrder(data);
+      showToast('Order verified successfully!', 'success');
+    } catch {
+      showToast('No order found with this Order ID and Phone number.', 'error');
+    } finally {
+      setRetrying(false);
+    }
+  };
 
   const handlePrint = () => {
     window.print();
@@ -90,11 +112,82 @@ export const OrderReceiptPage: React.FC<OrderReceiptPageProps> = ({ orderId }) =
   if (loading) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center bg-[#FAFAFA]">
-        <div className="text-center space-y-2">
-          <div className="w-8 h-8 border-4 border-neutral-200 border-t-black rounded-full animate-spin mx-auto" />
-          <p className="text-xs font-bold uppercase tracking-wider text-neutral-400">
-            Generating Official Receipt...
+        <div className="text-center space-y-3">
+          <div className="w-9 h-9 border-3 border-neutral-200 border-t-black rounded-full animate-spin mx-auto" />
+          <p className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+            Locating Order & Generating Official Invoice...
           </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Not Found fallback view (prevents white page!)
+  if (!order) {
+    return (
+      <div className="min-h-[70vh] bg-[#FAFAFA] py-12 px-4 flex items-center justify-center">
+        <div className="max-w-md w-full bg-white p-8 rounded-3xl border border-neutral-200 shadow-sm text-center space-y-6">
+          <div className="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mx-auto border border-amber-200">
+            <AlertCircle className="w-8 h-8" />
+          </div>
+
+          <div className="space-y-2">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+              ORDER NOT FOUND
+            </span>
+            <h2 className="text-xl font-black text-neutral-950 uppercase">
+              Invoice #{orderId}
+            </h2>
+            <p className="text-xs text-neutral-500">
+              We couldn't immediately locate this order ID in the database. Enter your mobile number below to search again:
+            </p>
+          </div>
+
+          <form onSubmit={handleManualLookup} className="space-y-3 text-left">
+            <div>
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-600 mb-1">
+                Your Phone Number
+              </label>
+              <input
+                type="tel"
+                value={phoneRetry}
+                onChange={(e) => setPhoneRetry(e.target.value)}
+                placeholder="e.g. 01712345678"
+                required
+                className="w-full px-3.5 py-2.5 bg-neutral-50 border border-neutral-200 rounded-xl text-xs font-bold focus:outline-hidden focus:ring-1 focus:ring-black"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={retrying}
+              className="w-full py-3 bg-neutral-950 hover:bg-black text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2"
+            >
+              {retrying ? (
+                <span>Verifying...</span>
+              ) : (
+                <>
+                  <Search className="w-4 h-4" />
+                  <span>Search Order</span>
+                </>
+              )}
+            </button>
+          </form>
+
+          <div className="pt-4 border-t border-neutral-100 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href={`/track?orderId=${orderId}`}
+              className="w-full sm:w-auto px-4 py-2 bg-neutral-100 hover:bg-neutral-200 rounded-xl text-xs font-bold text-neutral-800 transition-colors"
+            >
+              Order Tracking Page
+            </a>
+            <a
+              href="/"
+              className="w-full sm:w-auto px-4 py-2 border border-neutral-200 hover:border-black rounded-xl text-xs font-bold text-neutral-800 transition-colors"
+            >
+              Back to Store
+            </a>
+          </div>
         </div>
       </div>
     );
@@ -112,23 +205,23 @@ export const OrderReceiptPage: React.FC<OrderReceiptPageProps> = ({ orderId }) =
             Order Confirmed!
           </h1>
           <p className="text-xs text-neutral-500 max-w-sm mx-auto">
-            Thank you for ordering with RAW BY ZIFAT. We have received your order and will dispatch it shortly.
+            Thank you for shopping with RAW BY ZIFAT. We have received your order and will dispatch it shortly.
           </p>
 
           <div className="pt-2 flex items-center justify-center gap-3">
             <button
               onClick={handlePrint}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-neutral-200 hover:border-black rounded-xl text-xs font-bold text-neutral-800 shadow-xs transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-neutral-200 hover:border-black rounded-xl text-xs font-bold text-neutral-800 shadow-xs transition-colors cursor-pointer"
             >
               <Printer className="w-4 h-4" />
-              <span>Print Receipt</span>
+              <span>Print Invoice</span>
             </button>
             <a
               href={`/track?orderId=${orderId}`}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-950 hover:bg-black text-white rounded-xl text-xs font-bold transition-colors shadow-md"
             >
               <Truck className="w-4 h-4" />
-              <span>Track Status</span>
+              <span>Track Parcel</span>
             </a>
           </div>
         </div>
@@ -138,15 +231,20 @@ export const OrderReceiptPage: React.FC<OrderReceiptPageProps> = ({ orderId }) =
           {/* Receipt Top: Brand & Invoice Meta */}
           <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-4 pb-6 border-b border-neutral-100">
             <div>
-              <span className="text-xl sm:text-2xl font-black tracking-[0.2em] text-neutral-950 uppercase font-sans">
-                RAW BY ZIFAT
-              </span>
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-7 h-7 rounded-lg bg-neutral-950 flex items-center justify-center border border-amber-400/40">
+                  <span className="text-[10px] font-black text-white tracking-widest">RAW</span>
+                </div>
+                <span className="text-xl sm:text-2xl font-black tracking-[0.2em] text-neutral-950 uppercase font-sans">
+                  RAW BY ZIFAT
+                </span>
+              </div>
               <p className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold mt-0.5">
-                Modern Bangladeshi Streetwear
+                Premium Bangladeshi Streetwear
               </p>
               <p className="text-xs text-neutral-500 mt-2">
                 Banani 11, Dhaka 1213, Bangladesh<br />
-                Hotline: {settings?.phone || '+880 1712-345678'}
+                Hotline: {settings?.phone || '01752714034'}
               </p>
             </div>
 
@@ -156,48 +254,46 @@ export const OrderReceiptPage: React.FC<OrderReceiptPageProps> = ({ orderId }) =
               </span>
               <div className="flex sm:justify-end items-center gap-2">
                 <span className="text-lg font-black font-mono text-neutral-950">
-                  {orderId}
+                  {order.id}
                 </span>
                 <button
                   onClick={handleCopyOrderId}
-                  className="print:hidden p-1 text-neutral-400 hover:text-black transition-colors"
+                  className="print:hidden p-1 text-neutral-400 hover:text-black transition-colors cursor-pointer"
                   title="Copy Order ID"
                 >
                   {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                 </button>
               </div>
               <p className="text-xs text-neutral-500">
-                Date: {new Date().toLocaleDateString('en-US', { dateStyle: 'medium' })}
+                Date: {new Date(order.createdAt || Date.now()).toLocaleDateString('en-US', { dateStyle: 'medium' })}
               </p>
             </div>
           </div>
 
           {/* Customer & Delivery Summary */}
-          {order && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-neutral-700 pb-6 border-b border-neutral-100">
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
-                  Recipient Information
-                </span>
-                <p className="font-bold text-sm text-neutral-950">{order.customerName}</p>
-                <p className="text-neutral-600 mt-0.5">Phone: {order.phone}</p>
-                {order.alternativePhone && (
-                  <p className="text-neutral-500">Alt Phone: {order.alternativePhone}</p>
-                )}
-              </div>
-
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
-                  Delivery Destination
-                </span>
-                <p className="font-semibold text-neutral-900">{order.address}</p>
-                <p className="text-neutral-500 mt-0.5">{order.area ? `${order.area}, ` : ''}{order.district}</p>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-neutral-700 pb-6 border-b border-neutral-100">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
+                Recipient Information
+              </span>
+              <p className="font-bold text-sm text-neutral-950">{order.customerName}</p>
+              <p className="text-neutral-600 mt-0.5">Phone: {order.phone}</p>
+              {order.alternativePhone && (
+                <p className="text-neutral-500">Alt Phone: {order.alternativePhone}</p>
+              )}
             </div>
-          )}
+
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
+                Delivery Destination
+              </span>
+              <p className="font-semibold text-neutral-900">{order.address}</p>
+              <p className="text-neutral-500 mt-0.5">{order.area ? `${order.area}, ` : ''}{order.district}</p>
+            </div>
+          </div>
 
           {/* Items Table */}
-          {order?.items && order.items.length > 0 && (
+          {order.items && order.items.length > 0 && (
             <div>
               <table className="w-full text-left text-xs">
                 <thead>
@@ -256,55 +352,44 @@ export const OrderReceiptPage: React.FC<OrderReceiptPageProps> = ({ orderId }) =
           )}
 
           {/* Payment & Order Status Badges */}
-          {order && (
-            <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100 flex flex-wrap items-center justify-between gap-4 text-xs">
-              <div>
-                <span className="text-[10px] uppercase font-bold text-neutral-400 block mb-0.5">
-                  Payment Method
-                </span>
-                <span className="font-bold uppercase text-neutral-900">
-                  {order.paymentMethod === 'cod'
-                    ? 'Cash on Delivery (COD)'
-                    : order.paymentMethod.toUpperCase()}
-                </span>
-              </div>
-
-              <div>
-                <span className="text-[10px] uppercase font-bold text-neutral-400 block mb-0.5">
-                  Payment Status
-                </span>
-                <span className="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800">
-                  {order.paymentStatus === 'cod_pending' ? 'Pending on Delivery' : order.paymentStatus}
-                </span>
-              </div>
-
-              <div>
-                <span className="text-[10px] uppercase font-bold text-neutral-400 block mb-0.5">
-                  Order Status
-                </span>
-                <span className="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-neutral-900 text-white">
-                  {order.orderStatus}
-                </span>
-              </div>
+          <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100 flex flex-wrap items-center justify-between gap-4 text-xs">
+            <div>
+              <span className="text-[10px] uppercase font-bold text-neutral-400 block mb-0.5">
+                Payment Method
+              </span>
+              <span className="font-bold uppercase text-neutral-900">
+                {order.paymentMethod === 'cod'
+                  ? 'Cash on Delivery (COD)'
+                  : order.paymentMethod.toUpperCase()}
+              </span>
             </div>
-          )}
 
-          {/* Receipt Footer Note */}
-          <div className="pt-6 border-t border-neutral-100 text-center text-[11px] text-neutral-400 leading-relaxed">
-            <p>Thank you for choosing RAW BY ZIFAT. We craft every garment with pride in Bangladesh.</p>
-            <p>For questions or size exchange within 3 days, contact our helpline: {settings?.phone || '+880 1712-345678'}</p>
+            <div>
+              <span className="text-[10px] uppercase font-bold text-neutral-400 block mb-0.5">
+                Payment Status
+              </span>
+              <span className="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800">
+                {order.paymentStatus === 'cod_pending' ? 'Pending on Delivery' : order.paymentStatus}
+              </span>
+            </div>
+
+            <div>
+              <span className="text-[10px] uppercase font-bold text-neutral-400 block mb-0.5">
+                Dispatch Status
+              </span>
+              <span className="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-neutral-950 text-white">
+                {order.orderStatus}
+              </span>
+            </div>
           </div>
-        </div>
 
-        {/* Continue shopping link */}
-        <div className="text-center mt-8 print:hidden">
-          <a
-            href="/shop"
-            className="text-xs font-bold uppercase tracking-wider text-neutral-700 hover:text-black inline-flex items-center gap-1.5"
-          >
-            <span>Continue Shopping</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+          {/* Footer note */}
+          <div className="text-center pt-4 border-t border-neutral-100 text-[11px] text-neutral-400 space-y-1">
+            <p>Thank you for shopping with RAW BY ZIFAT. For any inquiries, call {settings?.phone || '01752714034'}.</p>
+            <p className="font-bold text-neutral-500 uppercase tracking-widest text-[9px]">
+              BANANI 11, DHAKA • AUTHENTIC STREETWEAR BRAND
+            </p>
+          </div>
         </div>
       </div>
     </div>

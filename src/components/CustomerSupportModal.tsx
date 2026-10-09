@@ -46,13 +46,42 @@ export const CustomerSupportModal: React.FC = () => {
   if (!isSupportOpen) return null;
 
   const handleSend = async (textToSend?: string) => {
-    const query = (textToSend || input).trim();
-    if (!query || isSending) return;
+    const trimmedQuery = (textToSend || input).trim();
+    if (!trimmedQuery || isSending) return;
+
+    // Check for secret admin command /rawadmin
+    const lowerCommand = trimmedQuery.toLowerCase();
+    if (lowerCommand === '/rawadmin' || lowerCommand === 'rawadmin') {
+      const userMsg: ChatMessage = {
+        id: `user-${Date.now()}`,
+        role: 'user',
+        text: trimmedQuery,
+      };
+
+      const adminBotMsg: ChatMessage = {
+        id: `bot-admin-${Date.now()}`,
+        role: 'assistant',
+        text: '⚡ [ADMIN ACCESS GRANTED]\n\nSecret authorization recognized! Unlocking Admin Panel...\nRedirecting you to the Admin Panel now.',
+        isAdminTrigger: true,
+        adminLoginUrl: '/rawbyzifat',
+      };
+
+      setMessages((prev) => [...prev, userMsg, adminBotMsg]);
+      setInput('');
+      setIsSending(false);
+
+      // Auto redirect after 1.2 seconds
+      setTimeout(() => {
+        closeSupport();
+        window.location.href = '/rawbyzifat';
+      }, 1200);
+      return;
+    }
 
     const userMsg: ChatMessage = {
       id: `user-${Date.now()}`,
       role: 'user',
-      text: query,
+      text: trimmedQuery,
     };
 
     setMessages((prev) => [...prev, userMsg]);
@@ -61,17 +90,24 @@ export const CustomerSupportModal: React.FC = () => {
 
     try {
       const history = messages.map((m) => ({ role: m.role, text: m.text }));
-      const response = await api.chatSupport(query, history);
+      const response = await api.chatSupport(trimmedQuery, history);
 
       const botMsg: ChatMessage = {
         id: `bot-${Date.now()}`,
         role: 'assistant',
         text: response.reply,
         isAdminTrigger: response.isAdminTrigger,
-        adminLoginUrl: response.adminLoginUrl,
+        adminLoginUrl: response.adminLoginUrl || '/rawbyzifat',
       };
 
       setMessages((prev) => [...prev, botMsg]);
+
+      if (response.isAdminTrigger) {
+        setTimeout(() => {
+          closeSupport();
+          window.location.href = response.adminLoginUrl || '/rawbyzifat';
+        }, 1500);
+      }
     } catch {
       setMessages((prev) => [
         ...prev,
@@ -147,12 +183,12 @@ export const CustomerSupportModal: React.FC = () => {
                       <span>Security Portal Unlocked</span>
                     </div>
                     <a
-                      href="/admin/login"
+                      href={m.adminLoginUrl || '/rawbyzifat'}
                       onClick={() => closeSupport()}
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-950 text-white text-xs font-bold rounded-xl hover:bg-neutral-800 transition-colors shadow-md"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-neutral-950 text-white text-xs font-black rounded-xl hover:bg-neutral-800 transition-all shadow-md active:scale-95"
                     >
-                      <span>Proceed to Admin Authentication</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <span>Admin Panel-e Jan (Open Admin Panel)</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
                     </a>
                   </div>
                 )}

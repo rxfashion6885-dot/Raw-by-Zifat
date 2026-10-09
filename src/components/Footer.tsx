@@ -81,13 +81,21 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 py-12 border-b border-neutral-100">
           {/* Brand Intro */}
           <div className="space-y-4">
-            <a href="/" className="inline-block">
-              <span className="text-2xl font-black tracking-[0.2em] text-neutral-950 uppercase font-sans">
-                RAW BY ZIFAT
-              </span>
+            <a href="/" className="inline-flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-neutral-950 flex items-center justify-center border border-neutral-800 shadow-sm shrink-0">
+                <span className="font-black text-white text-xs tracking-tight">RAW</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xl font-black tracking-[0.2em] text-neutral-950 uppercase font-sans">
+                  RAW BY ZIFAT
+                </span>
+                <span className="text-[9px] tracking-[0.25em] text-neutral-400 font-bold uppercase">
+                  Raw By Fashion • Official Store
+                </span>
+              </div>
             </a>
             <p className="text-xs text-neutral-600 leading-relaxed max-w-sm">
-              Contemporary Bangladeshi fashion house engineered around heavy fabrics, drop-shoulder silhouettes, and minimalist traditional linen. Pure streetwear discipline.
+              Contemporary Bangladeshi fashion house engineered around heavy fabrics, drop-shoulder silhouettes, and minimalist traditional linen. Pure streetwear discipline by Zifat.
             </p>
             <div className="pt-1 flex items-center gap-3">
               {profile?.facebook && (
@@ -206,7 +214,9 @@ export const Footer: React.FC = () => {
 
         {/* Bottom copyright & Developer credits */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
-          <p>© {currentYear} RAW BY ZIFAT. All rights reserved.</p>
+          <div className="flex items-center gap-3">
+            <p>© {currentYear} RAW BY ZIFAT. All rights reserved.</p>
+          </div>
 
           <div className="flex items-center gap-4">
             <a

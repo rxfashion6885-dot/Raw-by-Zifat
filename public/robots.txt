@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /rawbyzifat
+Disallow: /api/
+
+Sitemap: https://rawbyzifat.netlify.app/sitemap.xml

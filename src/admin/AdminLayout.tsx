@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useAdminAuth } from '../context/AdminAuthContext.js';
+import { AdminLoginPage } from './AdminLoginPage.js';
 import { api } from '../services/api.js';
 import type { Order } from '../types/index.js';
 import {
@@ -120,8 +121,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeTab })
   }
 
   if (!isAdmin) {
-    window.location.href = '/admin/login';
-    return null;
+    return <AdminLoginPage />;
   }
 
   // Get current subview from query
@@ -265,7 +265,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activeTab })
           <div className="text-xs">
             <span className="text-[10px] text-neutral-500 uppercase font-bold block">Current Admin</span>
             <span className="font-extrabold text-neutral-200 truncate block">
-              {adminUser?.username || 'zifat69'}
+              {adminUser?.username || 'admin12'}
               <span className="text-amber-400 font-bold text-[10px] ml-1">
                 ({adminUser?.role || 'SUPER_ADMIN'})
               </span>

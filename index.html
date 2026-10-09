@@ -3,22 +3,100 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>RAW BY ZIFAT</title>
-    <meta name="description" content="RAW BY ZIFAT - Premium Bangladeshi Fashion & Clothing Brand. Minimalist, modern streetwear, panjabi, hoodies, oversized t-shirts, and everyday apparel." />
-    <meta property="og:title" content="RAW BY ZIFAT" />
-    <meta property="og:description" content="RAW BY ZIFAT - Premium Bangladeshi Fashion & Clothing Brand. Minimalist, modern streetwear, panjabi, hoodies, oversized t-shirts, and everyday apparel." />
+    <title>RAW BY ZIFAT | Premium Fashion & Streetwear Clothing Brand</title>
+    <meta name="description" content="RAW BY ZIFAT (Raw by fashion) - Official Bangladesh online clothing store. Discover premium oversized t-shirts, exclusive panjabi, heavyweight hoodies, and modern streetwear fashion by Zifat." />
+    <meta name="keywords" content="Raw by Zifat, Raw by fashion, RAW BY ZIFAT, rawbyzifat, raw clothing, zifat fashion, streetwear bangladesh, oversized t-shirt bd, premium panjabi, dhaka fashion brand" />
+    <meta name="author" content="Zifat | RAW BY ZIFAT" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://rawbyzifat.netlify.app/" />
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rawbyzifat.netlify.app/" />
+    <meta property="og:title" content="RAW BY ZIFAT - Raw By Fashion Official Store" />
+    <meta property="og:description" content="Shop premium streetwear, artisan panjabi, heavy GSM hoodies & oversized t-shirts online at RAW BY ZIFAT. Fast cash on delivery across Bangladesh." />
+    <meta property="og:image" content="https://rawbyzifat.netlify.app/logo-raw.svg" />
     <meta property="og:site_name" content="RAW BY ZIFAT" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="RAW BY ZIFAT" />
-    <meta name="twitter:description" content="RAW BY ZIFAT - Premium Bangladeshi Fashion & Clothing Brand." />
+    <meta name="twitter:url" content="https://rawbyzifat.netlify.app/" />
+    <meta name="twitter:title" content="RAW BY ZIFAT | Raw By Fashion Official" />
+    <meta name="twitter:description" content="Official store for RAW BY ZIFAT clothing & modern streetwear collections in Bangladesh." />
+    <meta name="twitter:image" content="https://rawbyzifat.netlify.app/logo-raw.svg" />
+
+    <!-- Favicon & Brand Icons -->
+    <link rel="icon" type="image/svg+xml" href="/logo-raw.svg" />
+    <link rel="apple-touch-icon" href="/logo-raw.svg" />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Structured Data for Google Search Engine Optimization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ClothingStore",
+          "@id": "https://rawbyzifat.netlify.app/#store",
+          "name": "RAW BY ZIFAT",
+          "alternateName": ["Raw by fashion", "RAW", "Raw by Zifat Online Store", "Zifat Streetwear"],
+          "url": "https://rawbyzifat.netlify.app/",
+          "logo": "https://rawbyzifat.netlify.app/logo-raw.svg",
+          "image": "https://rawbyzifat.netlify.app/logo-raw.svg",
+          "description": "Premium Bangladeshi fashion house engineered around heavy fabrics, drop-shoulder silhouettes, and minimalist traditional linen. Pure streetwear discipline.",
+          "priceRange": "৳৳",
+          "currenciesAccepted": "BDT",
+          "paymentAccepted": "Cash on Delivery, bKash, Nagad",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Dhaka",
+            "addressCountry": "BD"
+          },
+          "founder": {
+            "@type": "Person",
+            "name": "Zifat"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://rawbyzifat.netlify.app/#website",
+          "url": "https://rawbyzifat.netlify.app/",
+          "name": "RAW BY ZIFAT",
+          "alternateName": "Raw by fashion",
+          "publisher": {
+            "@id": "https://rawbyzifat.netlify.app/#store"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://rawbyzifat.netlify.app/shop?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <script>
+      window.addEventListener('error', function(e) {
+        if (e && (e.message && (e.message.includes('WebSocket') || e.message.includes('@vite/client')) || (e.filename && e.filename.includes('@vite/client')))) {
+          e.stopImmediatePropagation();
+        }
+      }, true);
+      window.addEventListener('unhandledrejection', function(e) {
+        if (e && e.reason && (String(e.reason).includes('WebSocket') || String(e.reason).includes('@vite/client'))) {
+          e.stopImmediatePropagation();
+        }
+      }, true);
+    </script>
   </head>
   <body class="bg-[#FAFAFA] text-neutral-900 font-sans antialiased selection:bg-neutral-900 selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

@@ -283,17 +283,27 @@ export const Navbar: React.FC = () => {
             </div>
 
             {/* Logo Area: RAW BY ZIFAT */}
-            <a href="/" className="flex items-center gap-2 group">
+            <a href="/" className="flex items-center gap-2.5 group">
               {settings?.logoUrl ? (
-                <img src={settings.logoUrl} alt="RAW BY ZIFAT" className="h-8 object-contain" />
+                <img src={settings.logoUrl} alt="RAW BY ZIFAT - Raw by fashion" className="h-8 object-contain" />
               ) : (
-                <div className="flex flex-col">
-                  <span className="text-xl sm:text-2xl font-black tracking-[0.2em] text-neutral-950 uppercase font-sans group-hover:opacity-80 transition-opacity">
-                    RAW BY ZIFAT
-                  </span>
-                  <span className="text-[9px] tracking-[0.35em] text-neutral-400 uppercase -mt-1 font-bold">
-                    EST. DHAKA • 4K ULTRA
-                  </span>
+                <div className="flex items-center gap-2.5">
+                  {/* Stylized geometric RAW brand icon */}
+                  <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-neutral-950 flex items-center justify-center border border-neutral-800 shadow-sm group-hover:border-neutral-700 transition-colors shrink-0 overflow-hidden">
+                    <div className="absolute inset-0 bg-radial from-neutral-800 to-neutral-950 opacity-60" />
+                    <span className="relative font-black tracking-tighter text-white text-[13px] sm:text-sm font-sans drop-shadow-sm select-none">
+                      RAW
+                    </span>
+                    <span className="absolute bottom-0.5 inset-x-1 h-[2px] bg-linear-to-r from-amber-400 to-amber-200 rounded-full" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-lg sm:text-xl font-black tracking-[0.18em] text-neutral-950 uppercase font-sans group-hover:opacity-80 transition-opacity leading-none">
+                      RAW BY ZIFAT
+                    </span>
+                    <span className="text-[8.5px] sm:text-[9px] tracking-[0.3em] text-neutral-400 uppercase font-bold mt-1">
+                      RAW BY FASHION • DHAKA
+                    </span>
+                  </div>
                 </div>
               )}
             </a>

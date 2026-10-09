@@ -620,8 +620,8 @@ class Database {
       console.error('Failed to load database from file, initializing fresh:', err);
     }
 
-    // Default admin account: zifat69 / rawbyzifat
-    const { hash, salt } = hashPassword('rawbyzifat');
+    // Default admin account: admin12 / zifat12
+    const { hash, salt } = hashPassword('zifat12');
 
     const fresh: DatabaseSchema = {
       products: INITIAL_PRODUCTS,
@@ -643,7 +643,7 @@ class Database {
       adminUsers: [
         {
           id: 'admin-001',
-          email: 'zifat69',
+          email: 'admin12',
           passwordHash: hash,
           salt: salt,
           role: 'SUPER_ADMIN',
